@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsApplication2", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inq.BPMN", "Inq.BPMN\Inq.BPMN.csproj", "{C69E76CF-5C8C-4D62-90E2-28571B6B3112}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inq.BPMN.Polite", "Inq.BPMN.Polite\Inq.BPMN.Polite.csproj", "{B5A13712-4C3A-4988-9D03-583C74D7084F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{C69E76CF-5C8C-4D62-90E2-28571B6B3112}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C69E76CF-5C8C-4D62-90E2-28571B6B3112}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C69E76CF-5C8C-4D62-90E2-28571B6B3112}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5A13712-4C3A-4988-9D03-583C74D7084F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5A13712-4C3A-4988-9D03-583C74D7084F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5A13712-4C3A-4988-9D03-583C74D7084F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5A13712-4C3A-4988-9D03-583C74D7084F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

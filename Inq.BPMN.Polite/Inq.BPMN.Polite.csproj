@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C69E76CF-5C8C-4D62-90E2-28571B6B3112}</ProjectGuid>
+    <ProjectGuid>{B5A13712-4C3A-4988-9D03-583C74D7084F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Inq.BPMN</RootNamespace>
-    <AssemblyName>Inq.BPMN</AssemblyName>
+    <RootNamespace>Inq.BPMN.Polite</RootNamespace>
+    <AssemblyName>Inq.BPMN.Polite</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -32,6 +32,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -39,30 +40,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BPMN20.cs" />
-    <Compile Include="BPMNDI.cs" />
-    <Compile Include="BPMNEngine.cs" />
+    <Compile Include="BShape.cs" />
+    <Compile Include="IBShape.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Types\Types.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
-    <None Include="Omg.BPMN.2.0\BPMN20.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Omg.BPMN.2.0\BPMNDI.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Omg.BPMN.2.0\DC.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Omg.BPMN.2.0\DI.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="packages.config" />
-    <None Include="Omg.BPMN.2.0\Semantic.xsd">
-      <SubType>Designer</SubType>
-    </None>
+    <ProjectReference Include="..\Inq.BPMN\Inq.BPMN.csproj">
+      <Project>{c69e76cf-5c8c-4d62-90e2-28571b6b3112}</Project>
+      <Name>Inq.BPMN</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

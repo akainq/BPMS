@@ -1,0 +1,7 @@
+C:\Users\Aleksey\Documents\Visual Studio 2013\Projects\BPMS\Inq.BPMN.Polite\obj\Debug\Inq.BPMN.Polite.csprojResolveAssemblyReference.cache
+C:\Users\Aleksey\Documents\Visual Studio 2013\Projects\BPMS\Inq.BPMN.Polite\bin\Debug\Inq.BPMN.Polite.dll
+C:\Users\Aleksey\Documents\Visual Studio 2013\Projects\BPMS\Inq.BPMN.Polite\bin\Debug\Inq.BPMN.Polite.pdb
+C:\Users\Aleksey\Documents\Visual Studio 2013\Projects\BPMS\Inq.BPMN.Polite\bin\Debug\Inq.BPMN.dll
+C:\Users\Aleksey\Documents\Visual Studio 2013\Projects\BPMS\Inq.BPMN.Polite\bin\Debug\Inq.BPMN.pdb
+C:\Users\Aleksey\Documents\Visual Studio 2013\Projects\BPMS\Inq.BPMN.Polite\obj\Debug\Inq.BPMN.Polite.dll
+C:\Users\Aleksey\Documents\Visual Studio 2013\Projects\BPMS\Inq.BPMN.Polite\obj\Debug\Inq.BPMN.Polite.pdb

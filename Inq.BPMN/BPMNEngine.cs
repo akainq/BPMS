@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Inq.BPMN.Types;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -13,8 +14,25 @@ namespace Inq.BPMN
 {
     public class BPMNEngine
     {
+      //
+
+        public static eBPMNShapeType GetShapeType(tFlowElement element)
+        {
+
+            var type = element.GetType();
+           
+
+            if (type == typeof(tStartEvent)) { return eBPMNShapeType.BPMNEventStart; }
+            if (type == typeof(tGateway))   { return eBPMNShapeType.BPMNGateway; }
+            if (type == typeof(tEndEvent)) { return eBPMNShapeType.BPMNEventEnd; }
+            if (type == typeof(BPMNShape)) { return eBPMNShapeType.BPMNShape; }
+ 
+            return eBPMNShapeType.BPMNTopLevel;
+        }
+
+        
         string SchemaPath = @"E:\MyWork\BPM\Standart\";
-        string TestBPMN = @"C:\Users\kuznetsov\Documents\BPM\test\Order.bpmn";
+        string TestBPMN = @"E:\MyWork\BPM\BPMN\pool.bpmn.bpmn";
         public tDefinitions ReadBPMN(string filename)
         {
 
