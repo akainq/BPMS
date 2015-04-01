@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- Created with Liquid XML Studio Developer Bundle Edition (Trial) (http://www.liquid-technologies.com) -->
+<bpmndi:BPMNDiagram xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/DI file:///C:/Users/kuznetsov/Documents/visual%20studio%202013/Projects/BPMS/Inq.BPMN/BPMNDI.xsd" name="string" documentation="string" resolution="-88.4450941961" id="AAAAA">
+	<bpmndi:BPMNPlane bpmnElement="string">
+		<di:DiagramElement id="AAAAB" />
+	</bpmndi:BPMNPlane>
+	<bpmndi:BPMNLabelStyle id="AAAAC">
+		<dc:Font name="string" isBold="1" isStrikeThrough="0" />
+	</bpmndi:BPMNLabelStyle>
+	<bpmndi:BPMNLabelStyle id="AAAAD">
+		<dc:Font name="string" size="781.0749058039" isItalic="0" isUnderline="1" />
+	</bpmndi:BPMNLabelStyle>
+	<bpmndi:BPMNLabelStyle id="AAAAE">
+		<dc:Font isUnderline="1" isStrikeThrough="false" />
+	</bpmndi:BPMNLabelStyle>
+</bpmndi:BPMNDiagram>

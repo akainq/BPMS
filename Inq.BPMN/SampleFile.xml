@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- Created with Liquid XML Studio Developer Bundle Edition (Trial) (http://www.liquid-technologies.com) -->
+<bpmndi:BPMNShape xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/DI file:///C:/Users/kuznetsov/Documents/visual%20studio%202013/Projects/BPMS/Inq.BPMN/BPMNDI.xsd" bpmnElement="string" isHorizontal="true" isExpanded="1" isMarkerVisible="1" isMessageVisible="true" participantBandKind="middle_non_initiating" choreographyActivityShape="string" id="AAAAA">
+	<di:extension />
+	<dc:Bounds x="-5123.7650941961" y="4866.2549058039" width="-112.9850941961" height="8432.6749058039" />
+	<bpmndi:BPMNLabel labelStyle="string" id="AAAAB" />
+</bpmndi:BPMNShape>

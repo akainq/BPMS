@@ -32815,7 +32815,7 @@ namespace Inq.BPMN
             }
         }
     }
-    
+    /*
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.34230")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -32837,6 +32837,8 @@ namespace Inq.BPMN
         }
 
      
+
+
          [System.Xml.Serialization.XmlElementAttribute("BPMNPlane")]
         public BPMNPlane BPMNPlane
         {
@@ -36290,7 +36292,7 @@ namespace Inq.BPMN
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.omg.org/spec/BPMN/20100524/DI")]
-    public partial class BPMNShape : LabeledShape
+    public  partial class BPMNShape : LabeledShape
     {
         
         private BPMNLabel _bPMNLabel;
@@ -37891,6 +37893,6 @@ namespace Inq.BPMN
                 }
             }
         }
-    }
+    }*/
 }
 #pragma warning restore

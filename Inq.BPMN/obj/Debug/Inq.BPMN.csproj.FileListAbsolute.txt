@@ -1,0 +1,5 @@
+C:\Users\kuznetsov\Documents\visual studio 2013\Projects\BPMS\Inq.BPMN\bin\Debug\Inq.BPMN.dll.config
+C:\Users\kuznetsov\Documents\visual studio 2013\Projects\BPMS\Inq.BPMN\bin\Debug\Inq.BPMN.dll
+C:\Users\kuznetsov\Documents\visual studio 2013\Projects\BPMS\Inq.BPMN\bin\Debug\Inq.BPMN.pdb
+C:\Users\kuznetsov\Documents\visual studio 2013\Projects\BPMS\Inq.BPMN\obj\Debug\Inq.BPMN.dll
+C:\Users\kuznetsov\Documents\visual studio 2013\Projects\BPMS\Inq.BPMN\obj\Debug\Inq.BPMN.pdb

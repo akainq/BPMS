@@ -14,7 +14,7 @@ namespace Inq.BPMN
     public class BPMNEngine
     {
         string SchemaPath = @"E:\MyWork\BPM\Standart\";
-        string TestBPMN = @"E:\MyWork\BPM\BPMN\PizzaV4.bpmn";
+        string TestBPMN = @"C:\Users\kuznetsov\Documents\BPM\test\Order.bpmn";
         public tDefinitions ReadBPMN(string filename)
         {
 
@@ -81,7 +81,7 @@ namespace Inq.BPMN
 
         void ser_UnknownNode(object sender, XmlNodeEventArgs e)
         {
-            throw new Exception("Неизвестная нода! Name:" + e.Name + " LocalName:" + e.LocalName + " NodeType:" + e.NodeType + " ObjectBeingDeserialized:" + e.ObjectBeingDeserialized);
+             throw new Exception("Неизвестная нода! Name:" + e.Name + " LocalName:" + e.LocalName + " NodeType:" + e.NodeType + " ObjectBeingDeserialized:" + e.ObjectBeingDeserialized);
         }
 
         void ser_UnknownElement(object sender, XmlElementEventArgs e)
@@ -91,7 +91,7 @@ namespace Inq.BPMN
 
         void ser_UnknownAttribute(object sender, XmlAttributeEventArgs e)
         {
-            throw new Exception("Неизвестный аотрибут!");
+           throw new Exception("Неизвестный аотрибут!");
         }
 
     }
