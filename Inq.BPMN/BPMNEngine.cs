@@ -14,8 +14,27 @@ namespace Inq.BPMN
 {
     public class BPMNEngine
     {
-      //
 
+       const string _LogFile = "bpmn.engine.log";
+      //
+       //    string SchemaPath = @"E:\MyWork\BPM\Standart\";
+       string TestBPMN = @"E:\MyWork\BPM\BPMN\pool.bpmn.bpmn";
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Message"></param>
+        public void WriteLog(string Message){
+
+                File.WriteAllText(_LogFile, Message);         
+
+            }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns></returns>
         public static eBPMNShapeType GetShapeType(tFlowElement element)
         {
 
@@ -30,32 +49,15 @@ namespace Inq.BPMN
             return eBPMNShapeType.BPMNTopLevel;
         }
 
-        
-        string SchemaPath = @"E:\MyWork\BPM\Standart\";
-        string TestBPMN = @"E:\MyWork\BPM\BPMN\pool.bpmn.bpmn";
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="filename"></param>
+        /// <returns></returns>
         public tDefinitions ReadBPMN(string filename)
         {
 
             tDefinitions result = new tDefinitions();
-            //result.rootElement = new List<tRootElement>(); 
-
-         //   result.rootElement
-
-            //var doc = new XmlDocument();
-
-
-            //XmlTextReader reader = new XmlTextReader(SchemaPath+"BPMN20.xsd");
-            //XmlSchema myschema = XmlSchema.Read(reader, null);
-            
-         
-
-            //doc.Schemas.Add(myschema);
-            //doc.Load(TestBPMN);
-            //   var ns = new XmlNamespaceManager(doc.NameTable);
-            //   ns.AddNamespace("semantic", "semantic");
-
-
-            //   var def = doc.SelectSingleNode("/semantic");
 
 
             XmlSerializer ser = new XmlSerializer(typeof(tDefinitions));
@@ -64,26 +66,17 @@ namespace Inq.BPMN
             ser.UnknownNode += ser_UnknownNode;
             ser.UnreferencedObject += ser_UnreferencedObject;
 
-            ////var ser = new XmlSerializer(typeof(tDefinitions));
 
-       
+           try{
+               result = (tDefinitions)ser.Deserialize(new StreamReader(filename));
 
-            //var XmlStream = new StreamReader(TestBPMN);
-
-            result = (tDefinitions)ser.Deserialize(new StreamReader(TestBPMN));
-            //var tr = (TextReader)new StreamReader(TestBPMN);
-
-            //XmlSerializer xs = new XmlSerializer(typeof(tDefinitions));
-            //var td = xs.Deserialize(tr);
-
-            //var sw = new StringWriter();
-            //var xtw = XmlWriter.Create(sw, new XmlWriterSettings
-            //{
-            //    Indent = true
-            //});
-            //xs.Serialize(xtw, td);
-            //xtw.Flush();
-          //  Console.WriteLine(sw.ToString());
+               }
+                catch(Exception e)
+               {
+                   WriteLog(e.Message);
+            
+                }
+          
 
             return (tDefinitions)result;
             

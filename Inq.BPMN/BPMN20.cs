@@ -39,7 +39,7 @@ namespace Inq.BPMN
     public abstract partial class tActivity : tFlowNode
     {
         
-        private tInputOutputSpecification _ioSpecification;
+       // private tInputOutputSpecification _ioSpecification;
         
         private List<tProperty> _property;
         
@@ -67,23 +67,23 @@ namespace Inq.BPMN
             this._dataOutputAssociation = new List<tDataOutputAssociation>();
             this._dataInputAssociation = new List<tDataInputAssociation>();
             this._property = new List<tProperty>();
-            this._ioSpecification = new tInputOutputSpecification();
+         //   this._ioSpecification = new tInputOutputSpecification();
             this._isForCompensation = false;
             this._startQuantity = "1";
             this._completionQuantity = "1";
         }
         
-        public tInputOutputSpecification ioSpecification
-        {
-            get
-            {
-                return this._ioSpecification;
-            }
-            set
-            {
-                this._ioSpecification = value;
-            }
-        }
+        //public tInputOutputSpecification ioSpecification
+        //{
+        //    get
+        //    {
+        //        return this._ioSpecification;
+        //    }
+        //    set
+        //    {
+        //        this._ioSpecification = value;
+        //    }
+        //}
         
         [System.Xml.Serialization.XmlElementAttribute("property")]
         public List<tProperty> property
@@ -166,7 +166,7 @@ namespace Inq.BPMN
         }
         
         [System.Xml.Serialization.XmlAttributeAttribute(DataType="integer")]
-        [System.ComponentModel.DefaultValueAttribute("1")]
+       // [System.ComponentModel.DefaultValueAttribute("1")]
         public string startQuantity
         {
             get
@@ -180,7 +180,7 @@ namespace Inq.BPMN
         }
         
         [System.Xml.Serialization.XmlAttributeAttribute(DataType="integer")]
-        [System.ComponentModel.DefaultValueAttribute("1")]
+       // [System.ComponentModel.DefaultValueAttribute("1")]
         public string completionQuantity
         {
             get
@@ -14894,9 +14894,9 @@ namespace Inq.BPMN
     public abstract partial class tFlowElement : tBaseElement
     {
         
-        private tAuditing _auditing;
+       // private tAuditing _auditing;
         
-        private tMonitoring _monitoring;
+       // private tMonitoring _monitoring;
         
         private List<System.Xml.XmlQualifiedName> _categoryValueRef;
         
@@ -14907,33 +14907,33 @@ namespace Inq.BPMN
         public tFlowElement()
         {
             this._categoryValueRef = new List<System.Xml.XmlQualifiedName>();
-            this._monitoring = new tMonitoring();
-            this._auditing = new tAuditing();
+            //this._monitoring = new tMonitoring();
+            //this._auditing = new tAuditing();
         }
         
-        public tAuditing auditing
-        {
-            get
-            {
-                return this._auditing;
-            }
-            set
-            {
-                this._auditing = value;
-            }
-        }
+        //public tAuditing auditing
+        //{
+        //    get
+        //    {
+        //        return this._auditing;
+        //    }
+        //    set
+        //    {
+        //        this._auditing = value;
+        //    }
+        //}
         
-        public tMonitoring monitoring
-        {
-            get
-            {
-                return this._monitoring;
-            }
-            set
-            {
-                this._monitoring = value;
-            }
-        }
+        //public tMonitoring monitoring
+        //{
+        //    get
+        //    {
+        //        return this._monitoring;
+        //    }
+        //    set
+        //    {
+        //        this._monitoring = value;
+        //    }
+        //}
         
         [System.Xml.Serialization.XmlElementAttribute("categoryValueRef")]
         public List<System.Xml.XmlQualifiedName> categoryValueRef
@@ -24030,7 +24030,7 @@ namespace Inq.BPMN
         
         private List<System.Xml.XmlQualifiedName> _supportedInterfaceRef;
         
-        private tInputOutputSpecification _ioSpecification;
+      //  private tInputOutputSpecification _ioSpecification;
         
         private List<tInputOutputBinding> _ioBinding;
         
@@ -24041,7 +24041,7 @@ namespace Inq.BPMN
         public tCallableElement()
         {
             this._ioBinding = new List<tInputOutputBinding>();
-            this._ioSpecification = new tInputOutputSpecification();
+         //   this._ioSpecification = new tInputOutputSpecification();
             this._supportedInterfaceRef = new List<System.Xml.XmlQualifiedName>();
         }
         
@@ -24058,17 +24058,17 @@ namespace Inq.BPMN
             }
         }
         
-        public tInputOutputSpecification ioSpecification
-        {
-            get
-            {
-                return this._ioSpecification;
-            }
-            set
-            {
-                this._ioSpecification = value;
-            }
-        }
+        //public tInputOutputSpecification ioSpecification
+        //{
+        //    get
+        //    {
+        //        return this._ioSpecification;
+        //    }
+        //    set
+        //    {
+        //        this._ioSpecification = value;
+        //    }
+        //}
         
         [System.Xml.Serialization.XmlElementAttribute("ioBinding")]
         public List<tInputOutputBinding> ioBinding

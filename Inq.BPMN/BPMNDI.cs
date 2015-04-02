@@ -14,6 +14,7 @@ namespace Inq.BPMN
     using System.Xml.Schema;
     using System.ComponentModel;
     using System.Collections.Generic;
+    using System.Xml;
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.34230")]
@@ -67,15 +68,15 @@ namespace Inq.BPMN
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.omg.org/spec/BPMN/20100524/DI")]
-    [System.Xml.Serialization.XmlRootAttribute(Namespace="http://www.omg.org/spec/BPMN/20100524/DI", IsNullable=false)]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="http://www.omg.org/spec/BPMN/20100524/DI", IsNullable=true)]
     public partial class BPMNPlane : Plane
     {
-        
-        private System.Xml.XmlQualifiedName _bpmnElement;
+
+        private XmlQualifiedName _bpmnElement;
         private List<DiagramElement> _diagramElement1;
         
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public System.Xml.XmlQualifiedName bpmnElement
+        public XmlQualifiedName bpmnElement
         {
             get
             {
@@ -87,11 +88,15 @@ namespace Inq.BPMN
             }
         }
 
-
-
+        [System.Xml.Serialization.XmlElementAttribute("Edge", typeof(Edge))]
+        [System.Xml.Serialization.XmlElementAttribute("LabeledEdge", typeof(LabeledEdge))]
+        [System.Xml.Serialization.XmlElementAttribute("Node", typeof(Node))]
+        [System.Xml.Serialization.XmlElementAttribute("Label", typeof(Label))]
         [System.Xml.Serialization.XmlElementAttribute("BPMNEdge", typeof(BPMNEdge))]
         [System.Xml.Serialization.XmlElementAttribute("BPMNShape", typeof(BPMNShape))]
-        [System.Xml.Serialization.XmlElementAttribute("DiagramElement", Order = 0)]
+        [System.Xml.Serialization.XmlElementAttribute("LabeledShape", typeof(LabeledShape))]
+        [System.Xml.Serialization.XmlElementAttribute("BPMNLabel", typeof(BPMNLabel))]
+        [System.Xml.Serialization.XmlElementAttribute("DiagramElement", Order = 0)]     
         public List<DiagramElement> diagramElement
         {
             get
@@ -121,6 +126,7 @@ namespace Inq.BPMN
         
         public Plane()
         {
+            
             //this._diagramElement1 = new List<DiagramElement>();
         }
 
@@ -578,7 +584,7 @@ namespace Inq.BPMN
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.omg.org/spec/DD/20100524/DC")]
-    public partial class Bounds
+    public  partial class Bounds
     {
         
         private double _x;
@@ -737,6 +743,9 @@ namespace Inq.BPMN
     
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(LabeledEdge))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(BPMNEdge))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(BPMNLabel))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Label))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Node))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.34230")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -785,7 +794,7 @@ namespace Inq.BPMN
     public partial class BPMNEdge : LabeledEdge
     {
         
-        private BPMNLabel _bPMNLabel;
+        //private BPMNLabel _bPMNLabel;
         
         private System.Xml.XmlQualifiedName _bpmnElement;
         
@@ -797,21 +806,23 @@ namespace Inq.BPMN
         
         public BPMNEdge()
         {
-            this._bPMNLabel = new BPMNLabel();
+          //  this._bPMNLabel = new BPMNLabel();
         }
-        
-        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
-        public BPMNLabel BPMNLabel
-        {
-            get
-            {
-                return this._bPMNLabel;
-            }
-            set
-            {
-                this._bPMNLabel = value;
-            }
-        }
+
+        //[System.Xml.Serialization.XmlElementAttribute("Node", typeof(Node))]
+        //[System.Xml.Serialization.XmlElementAttribute("Label", typeof(Label))]
+        //[System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        //public BPMNLabel BPMNLabel
+        //{
+        //    get
+        //    {
+        //        return this._bPMNLabel;
+        //    }
+        //    set
+        //    {
+        //        this._bPMNLabel = value;
+        //    }
+        //}
         
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public System.Xml.XmlQualifiedName bpmnElement
@@ -897,7 +908,12 @@ namespace Inq.BPMN
     [System.Xml.Serialization.XmlRootAttribute(Namespace="http://www.omg.org/spec/BPMN/20100524/DI", IsNullable=false)]
     public partial class BPMNLabel : Label
     {
+
+        //public BPMNLabel() { 
         
+        
+        //}
+      
         private System.Xml.XmlQualifiedName _labelStyle;
         
         [System.Xml.Serialization.XmlAttributeAttribute()]
@@ -912,24 +928,29 @@ namespace Inq.BPMN
                 this._labelStyle = value;
             }
         }
+
     }
-    
+
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(LabeledEdge))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(BPMNLabel))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(BPMNEdge))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.34230")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.omg.org/spec/DD/20100524/DI")]
-    public abstract partial class Label : Node
+    public  partial class Label : Node
     {
         
         private Bounds _bounds;
         
         public Label()
         {
-            this._bounds = new Bounds();
+          
+           this._bounds = new Bounds();
         }
-        
+
+   
         [System.Xml.Serialization.XmlElementAttribute(Namespace="http://www.omg.org/spec/DD/20100524/DC", Order=0)]
         public Bounds Bounds
         {
@@ -951,6 +972,7 @@ namespace Inq.BPMN
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Shape))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(LabeledShape))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(BPMNShape))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(BPMNEdge))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.34230")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -958,6 +980,24 @@ namespace Inq.BPMN
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.omg.org/spec/DD/20100524/DI")]
     public abstract partial class Node : DiagramElement
     {
+     //   private Bounds _bounds;
+
+      //  public Node() {
+          //  _bounds = new Bounds();
+       // }
+
+         //  [System.Xml.Serialization.XmlElementAttribute(Namespace = "http://www.omg.org/spec/DD/20100524/DC", Order = 0)]
+      /*  public Bounds Bounds
+        {
+            get
+            {
+                return this._bounds;
+            }
+            set
+            {
+                this._bounds = value;
+            }
+        }*/
     }
     
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(LabeledShape))]
@@ -1010,7 +1050,7 @@ namespace Inq.BPMN
     public partial class BPMNShape : LabeledShape
     {
         
-        private BPMNLabel _bPMNLabel;
+     //   private BPMNLabel _bPMNLabel;
         
         private System.Xml.XmlQualifiedName _bpmnElement;
         
@@ -1028,23 +1068,22 @@ namespace Inq.BPMN
         
         public BPMNShape()
         {
-            this._bPMNLabel = new BPMNLabel();
+            //this._bPMNLabel = new BPMNLabel();
         }
         
-        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
-        public BPMNLabel BPMNLabel
-        {
-            get
-            {
-                return this._bPMNLabel;
-            }
-            set
-            {
-                this._bPMNLabel = value;
-            }
-        }
-        
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        //[System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        //public BPMNLabel BPMNLabel
+        //{
+        //    get
+        //    {
+        //        return this._bPMNLabel;
+        //    }
+        //    set
+        //    {
+        //        this._bPMNLabel = value;
+        //    }
+        //}
+        [System.Xml.Serialization.XmlAttributeAttribute(Namespace = "http://www.omg.org/spec/BPMN/20100524/DI")]
         public System.Xml.XmlQualifiedName bpmnElement
         {
             get

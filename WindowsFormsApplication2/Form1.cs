@@ -6,10 +6,14 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
+using System.Xml.Serialization;
+using WindowsFormsApplication2.Shapes;
 
 namespace WindowsFormsApplication2
 {
@@ -19,10 +23,18 @@ namespace WindowsFormsApplication2
 
         Dictionary<string, BitmapShape> shapes;
 
+        List<BaseGraphicShape> gshape;
+
+
+        string TestBPMN = @"E:\MyWork\BPM\BPMN\pool.bpmn.bpmn";
+        string TestBPMN2 = @"C:\Users\kuznetsov\Documents\BPM\test\Order.bpmn";
+
 
         public Form1()
         {
             shapes = new Dictionary<string,BitmapShape>();
+            gshape = new List<BaseGraphicShape>();
+
             InitializeComponent();
             pictureBox1.Focus();
             pictureBox1.Invalidate();
@@ -31,7 +43,100 @@ namespace WindowsFormsApplication2
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Render();
+            var bpmn = new BPMNEngine();
+            def = bpmn.ReadBPMN(TestBPMN2);
+            loadTree();
+        }
+
+
+        public void loadTree() {
+
+            TreeNode root = new TreeNode(def.name);
+            root.Tag = def;
+            foreach (var elem in def.rootElement) {
+
+                TreeNode node = new TreeNode(elem.GetType().ToString());
+
+                node.Tag = elem;
+
+
+                if (elem.GetType() == typeof(tProcess)) {
+
+                    var proc = (tProcess)elem;
+
+                    TreeNode proc_node = new TreeNode(proc.name);
+                    proc_node.Tag = proc;
+
+                   
+
+                    foreach (var flow_elem in proc.flowElement)
+                    {
+                        TreeNode flow_node = new TreeNode(flow_elem.GetType().ToString());
+                        flow_node.Tag = flow_elem;
+                        if (flow_elem.GetType() == (typeof(tTask)))
+                        {
+                            gshape.Add(new TaskShape((tTask)flow_elem, (BPMNShape)GetDiagramElementById(flow_elem.id), pictureBox1.CreateGraphics()));
+                        }
+                        else {
+                            var shh = GetDiagramElementById(flow_elem.id);
+                            if(shh!=null)
+                                gshape.Add(new AnyShape(flow_elem, shh, pictureBox1.CreateGraphics()));
+                        
+                        }
+
+
+
+                        proc_node.Nodes.Add(flow_node);
+                    }
+
+
+
+                    node.Nodes.Add(proc_node);       
+                }
+
+
+        
+                root.Nodes.Add(node);
+            
+            }
+
+
+
+
+
+            treeView1.Nodes.Add(root);
+
+            pictureBox1.Refresh();
+        }
+
+
+        public DiagramElement GetDiagramElementById(string Id){
+
+
+            foreach (var sh in def.BPMNDiagram) {
+            
+             foreach(var d_elem in sh.BPMNPlane.diagramElement){
+
+                 if (d_elem.GetType() == typeof(BPMNShape)) {
+                     if (((BPMNShape)d_elem).bpmnElement.Name == Id)
+                     return d_elem;                 
+                 }
+                 if (d_elem.GetType() == typeof(BPMNEdge))
+                 {
+                     if (((BPMNEdge)d_elem).bpmnElement.Name == Id)
+                         return d_elem;
+                 }
+
+                 if (d_elem.GetType() == typeof(BPMNPlane))
+                 {
+                     if (((BPMNPlane)d_elem).bpmnElement.Name == Id)
+                         return d_elem;
+                 }   
+             }
+            
+            }
+
+            return null;
 
         }
 
@@ -52,59 +157,86 @@ namespace WindowsFormsApplication2
             rect.Offset(10, 10);
             rect.Inflate(-10, -10);
 
-            foreach (var item in ((tProcess)root[0]).flowElement) {
+            List<tProcess> proc_list = new List<tProcess>();
 
-                if (item.id == shape.bpmnElement.Name)
-                {
-                    flowElement = item;                   
-                    graphics.DrawString(flowElement.name, new System.Drawing.Font("Arial", 7), new SolidBrush(Color.Black), rect);
-                }
+            foreach (var item in root) {
+
+                if (item.GetType() == typeof(tProcess))
+
+                    proc_list.Add((tProcess)item);
             
             }
 
-    
 
-            Pen pen = new Pen(Color.FromArgb(255, 0, 0, 0),2);
-
-
-
-            if (flowElement!=null)
+            foreach (var proc in proc_list)
             {
 
-                if (!shapes.ContainsKey(flowElement.id))
+                foreach (var itemFlow in proc.flowElement)
                 {
-                    var bmap = new BitmapShape();
-                    bmap.element = flowElement;
-                    bmap.rect = rect2;
-                    bmap.pen = pen;
-                    shapes.Add(flowElement.id, bmap);
-                }
-                     
 
-                if (flowElement.GetType().IsSubclassOf(typeof(tEvent)))
+                    if (itemFlow.id == shape.bpmnElement.Name)
+                    {
+                        flowElement = itemFlow;
+                        graphics.DrawString(flowElement.name, new System.Drawing.Font("Arial", 8), new SolidBrush(Color.Black), rect);
+                    }
+
+                }
+
+
+
+                Pen pen = new Pen(Color.FromArgb(255, 0, 0, 0), 2);
+
+
+
+                if (flowElement != null)
                 {
-                    graphics.DrawEllipse(shapes[flowElement.id].pen, rect2);
+
+                    if (!shapes.ContainsKey(flowElement.id))
+                    {
+
+                        if (flowElement.GetType()==(typeof(tTask)))
+                        {
+                            gshape.Add(new TaskShape((tTask)flowElement, shape, graphics));
+                        }
+                        else
+                        {
+
+                            var bmap = new BitmapShape();
+                            bmap.element = flowElement;
+                            bmap.rect = rect2;
+                            bmap.pen = pen;
+                            shapes.Add(flowElement.id, bmap);
+                        }
+
+           
+
+                    }
+
+
+                    if (flowElement.GetType().IsSubclassOf(typeof(tEvent)))
+                    {
+                        graphics.DrawEllipse(shapes[flowElement.id].pen, rect2);
+                    }
+                    else
+                        if (flowElement.GetType().IsSubclassOf(typeof(tGateway)))
+                        {
+
+                            //  graphics.DrawRectangle(pen, rect2);
+                            RotateRectangle(graphics, pen, rect2, 45);
+                        }
+                        else
+                        {
+                          //  graphics.DrawRectangle(pen, rect2);
+                        }
+
+
                 }
                 else
-                    if (flowElement.GetType().IsSubclassOf(typeof(tGateway)))
-                    {
-                  
-                      //  graphics.DrawRectangle(pen, rect2);
-                        RotateRectangle(graphics, shapes[flowElement.id].pen, rect2, 45);
-                    }
-                    else 
                 {
-                    graphics.DrawRectangle(shapes[flowElement.id].pen, rect2);
+
+                    graphics.DrawRectangle(pen, rect2);
                 }
-
-
             }
-            else
-            {
-
-                graphics.DrawRectangle(pen, rect2);
-            }
-       
            // shape.Bounds.
          
         }
@@ -139,16 +271,17 @@ namespace WindowsFormsApplication2
 
 
 
-        void Render() {
+        void Render(Graphics graph)
+        {
 
-            var graph = pictureBox1.CreateGraphics();
+           // var graph = pictureBox1.CreateGraphics();
             graph.SmoothingMode = SmoothingMode.HighQuality;
-    
+            graph.Clear(Color.White);
 
-            var bpmn = new BPMNEngine();
-            def = bpmn.ReadBPMN("");
- 
+           // graph.RenderingOrigin = new System.Drawing.Point(0, 0);
+           // graph.PageScale = 1.1f;
 
+        /*    if (def!=null)
             foreach (var diag in def.BPMNDiagram)
             {
 
@@ -170,24 +303,24 @@ namespace WindowsFormsApplication2
                     }
 
                 }
+            }*/
+
+            foreach(var draw_gshape in  gshape){
+
+                draw_gshape.Draw(graph);
+            
             }
+
+      
         
         }
 
 
-
-
-        private void pictureBox1_Paint(object sender, PaintEventArgs e)
-        {
-           // DrowConvas(e.Graphics);
-            Render();
-
-        }
-
         private void pictureBox1_Paint_1(object sender, PaintEventArgs e)
         {
-            Render();
-         
+           // base.OnPaint(e);
+            Render(e.Graphics);
+       
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -218,14 +351,30 @@ namespace WindowsFormsApplication2
 
                //     MessageBox.Show(shape.Value.element.id);
                     shape.Value.pen = new Pen(new SolidBrush(Color.Blue));
-                    Render();
-                    //pictureBox1.Invalidate();
+             
+                    pictureBox1.Invalidate();
                 
               
                     break;
                 }
 
             }
+        }
+
+        private void treeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            propertyGrid1.SelectedObject = e.Node.Tag;
+        }
+
+        private void pictureBox1_Resize(object sender, EventArgs e)
+        {
+            pictureBox1.Invalidate();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+            def.SaveToFile("test.bpmn");
         }
 
     }
