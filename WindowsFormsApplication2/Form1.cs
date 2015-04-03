@@ -23,7 +23,9 @@ namespace WindowsFormsApplication2
 
         Dictionary<string, BitmapShape> shapes;
 
-        List<BaseGraphicShape> gshape;
+        Dictionary<string, BaseGraphicShape> gshape;
+
+        string slectedElementId = "";
 
 
         string TestBPMN = @"E:\MyWork\BPM\BPMN\pool.bpmn.bpmn";
@@ -33,18 +35,28 @@ namespace WindowsFormsApplication2
         public Form1()
         {
             shapes = new Dictionary<string,BitmapShape>();
-            gshape = new List<BaseGraphicShape>();
+            gshape = new Dictionary<string, BaseGraphicShape>();
 
             InitializeComponent();
-            pictureBox1.Focus();
-            pictureBox1.Invalidate();
-           ;
+            //pictureBox1.Focus();
+           // pictureBox1.Invalidate();
+
+            bpmnConvas1.OnGraphicRender += myRenderer;
+           //;
+        }
+
+
+        void myRenderer(PaintEventArgs e) {
+
+
+            Render(e.Graphics);
+
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             var bpmn = new BPMNEngine();
-            def = bpmn.ReadBPMN(TestBPMN2);
+            def = bpmn.ReadBPMN(TestBPMN);
             loadTree();
         }
 
@@ -75,12 +87,14 @@ namespace WindowsFormsApplication2
                         flow_node.Tag = flow_elem;
                         if (flow_elem.GetType() == (typeof(tTask)))
                         {
-                            gshape.Add(new TaskShape((tTask)flow_elem, (BPMNShape)GetDiagramElementById(flow_elem.id), pictureBox1.CreateGraphics()));
+                            gshape.Add(flow_elem.id, new TaskShape((tTask)flow_elem, (BPMNShape)GetDiagramElementById(flow_elem.id), bpmnConvas1.CreateGraphics()));
                         }
                         else {
                             var shh = GetDiagramElementById(flow_elem.id);
                             if(shh!=null)
-                                gshape.Add(new AnyShape(flow_elem, shh, pictureBox1.CreateGraphics()));
+                                gshape.Add(flow_elem.id, new AnyShape(flow_elem, shh, bpmnConvas1.CreateGraphics()));
+                               // gshape.Add(new AnyShape(flow_elem, shh, pictureBox1.CreateGraphics()));
+                              
                         
                         }
 
@@ -106,7 +120,7 @@ namespace WindowsFormsApplication2
 
             treeView1.Nodes.Add(root);
 
-            pictureBox1.Refresh();
+            bpmnConvas1.Refresh();
         }
 
 
@@ -196,7 +210,7 @@ namespace WindowsFormsApplication2
 
                         if (flowElement.GetType()==(typeof(tTask)))
                         {
-                            gshape.Add(new TaskShape((tTask)flowElement, shape, graphics));
+                            gshape.Add(flowElement.id, new TaskShape((tTask)flowElement, shape, graphics));
                         }
                         else
                         {
@@ -274,9 +288,10 @@ namespace WindowsFormsApplication2
         void Render(Graphics graph)
         {
 
+            
            // var graph = pictureBox1.CreateGraphics();
             graph.SmoothingMode = SmoothingMode.HighQuality;
-            graph.Clear(Color.White);
+           // graph.Clear(Color.White);
 
            // graph.RenderingOrigin = new System.Drawing.Point(0, 0);
            // graph.PageScale = 1.1f;
@@ -304,13 +319,19 @@ namespace WindowsFormsApplication2
 
                 }
             }*/
+          ///  graph.ScaleTransform(0.6f, 0.6f, MatrixOrder.Append);
+          ///  
+
+            //Matrix mx = new Matrix(1, 0, 0, 1, 1, 1);
+
+           // graph.TranslateTransform(-50, -150);
 
             foreach(var draw_gshape in  gshape){
 
-                draw_gshape.Draw(graph);
+                draw_gshape.Value.Draw(graph);
             
             }
-
+            //bpmnConvas1.Invalidate();
       
         
         }
@@ -319,7 +340,7 @@ namespace WindowsFormsApplication2
         private void pictureBox1_Paint_1(object sender, PaintEventArgs e)
         {
            // base.OnPaint(e);
-            Render(e.Graphics);
+        //    Render(e.Graphics);
        
         }
 
@@ -352,7 +373,7 @@ namespace WindowsFormsApplication2
                //     MessageBox.Show(shape.Value.element.id);
                     shape.Value.pen = new Pen(new SolidBrush(Color.Blue));
              
-                    pictureBox1.Invalidate();
+                  //  pictureBox1.Invalidate();
                 
               
                     break;
@@ -364,17 +385,123 @@ namespace WindowsFormsApplication2
         private void treeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
             propertyGrid1.SelectedObject = e.Node.Tag;
+
+            if (e.Node.Tag.GetType().IsSubclassOf(typeof(tFlowElement)))
+            {
+                if (!string.IsNullOrEmpty(slectedElementId))
+                    gshape[slectedElementId].IsSelected = false;
+                gshape[((tFlowElement)e.Node.Tag).id].IsSelected = true;
+                slectedElementId = ((tFlowElement)e.Node.Tag).id;
+
+                bpmnConvas1.Invalidate();
+            }
+
+
         }
 
-        private void pictureBox1_Resize(object sender, EventArgs e)
-        {
-            pictureBox1.Invalidate();
-        }
+
 
         private void button2_Click(object sender, EventArgs e)
         {
 
             def.SaveToFile("test.bpmn");
+        }
+
+        private void bpmnConvas1_Paint(object sender, PaintEventArgs e)
+        {
+            base.OnPaint(e);
+
+        }
+
+        private void bpmnConvas1_Resize(object sender, EventArgs e)
+        {
+            bpmnConvas1.Invalidate();
+        }
+
+
+        protected void DrawGrid(PaintEventArgs e)
+        {
+
+       //     base.OnPaintBackground(e);
+
+            var g = e.Graphics;
+
+            Rectangle workRect = new Rectangle();
+
+            g.FillRectangle(new SolidBrush(Color.FromArgb(141, 150, 179)), e.ClipRectangle);
+
+
+            int offset = 20;
+            // workRect.Offset(20, 20);
+            workRect.X = e.ClipRectangle.X + offset;
+            workRect.Y = e.ClipRectangle.Y + offset;
+
+            workRect.Width = e.ClipRectangle.Width - 40;
+            workRect.Height = e.ClipRectangle.Height - 40;
+
+            var shadow_rect = new Rectangle(new System.Drawing.Point(workRect.X + 5, workRect.Y + 5), workRect.Size);
+
+
+            g.FillRectangle(new SolidBrush(Color.FromArgb(67, 74, 94)), shadow_rect);
+
+            g.FillRectangle(new SolidBrush(Color.FromArgb(255, 255, 255)), workRect);
+
+            g.DrawRectangle(new Pen(Color.FromArgb(0, 0, 0)), workRect);
+
+            int grid_vertical_lines = workRect.Width / 10;
+            int grid_horizontal_lines = workRect.Height / 10;
+
+            var GrayPen = new Pen(Color.Gray, 1);
+            GrayPen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dot;
+
+            for (int i = 0; i <= grid_vertical_lines; i++)
+            {
+                var px = new System.Drawing.Point(i * 10, 0);
+                px.Offset(offset, offset);
+                var py = new System.Drawing.Point(i * 10, workRect.Bottom - offset);
+                py.Offset(offset, offset);
+
+                g.DrawLine(GrayPen, px, py);
+
+            }
+
+            for (int i = 0; i <= grid_horizontal_lines; i++)
+            {
+                var px = new System.Drawing.Point(0, i * 10);
+                px.Offset(offset, offset);
+                var py = new System.Drawing.Point(workRect.Right - offset, i * 10);
+                py.Offset(offset, offset);
+
+                g.DrawLine(GrayPen, px, py);
+
+            }
+
+        }
+
+        private void bpmnConvas1_MouseClick(object sender, MouseEventArgs e)
+        {
+            foreach (var shape in gshape)
+            {
+               // if (shape.Value.Rect.)     
+           
+                
+                if (shape.Value.GetType() == (typeof(TaskShape)))
+                {
+                     var taskShape =  (TaskShape)shape.Value;
+
+                     if (taskShape.Rect.Contains(e.Location)){
+
+                            if (!string.IsNullOrEmpty(slectedElementId)){
+                                gshape[slectedElementId].IsSelected = false;
+                            }
+
+                            gshape[((tFlowElement)shape.Value.FlowElment).id].IsSelected = true;
+                            slectedElementId = ((tFlowElement)shape.Value.FlowElment).id;
+
+                            bpmnConvas1.Invalidate();
+                     }
+                }
+            }
         }
 
     }

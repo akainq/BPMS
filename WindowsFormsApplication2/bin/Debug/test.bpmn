@@ -1,461 +1,360 @@
 <?xml version="1.0"?>
-<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" xmlns:signavio="http://www.signavio.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" exporter="Signavio Process Editor, http://www.signavio.com" exporterVersion="7.2.0" expressionLanguage="http://www.w3.org/1999/XPath" id="sid-bd8397ef-0e41-4745-9bb4-8b8dfc02a143" targetNamespace="http://www.signavio.com/bpmn20" typeLanguage="http://www.w3.org/2001/XMLSchema" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL http://www.omg.org/spec/BPMN/2.0/20100501/BPMN20.xsd">
-  <collaboration id="sid-9c3f83ca-231a-4340-a91b-ef7bc07c731d">
+<definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="_1275486197916" targetNamespace="http://www.trisotech.com/definitions/_1275486197916" xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL">
+  <process id="_6-1" isExecutable="false">
     <extensionElements />
-    <participant id="sid-F5FDF0E3-FD8C-4E91-B480-0E6A14685383" name="Shop" processRef="sid-88781E70-1C8E-4939-8EA9-B2BA427B2290">
-      <extensionElements>
-        <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffff" xmlns:signavio="http://www.signavio.com" />
-      </extensionElements>
+    <auditing>
+      <extensionElements />
+    </auditing>
+    <monitoring>
+      <extensionElements />
+    </monitoring>
+    <startEvent id="StartProcess" name="">
+      <extensionElements />
+      <q1:outgoing xmlns="" xmlns:q1="http://www.omg.org/spec/BPMN/20100524/MODEL">_6-468</q1:outgoing>
+      <outputSet>
+        <extensionElements />
+      </outputSet>
+    </startEvent>
+    <task id="TaskQuotationHandling" name="Quotation Handling" startQuantity="1" completionQuantity="1">
+      <extensionElements />
+      <q2:incoming xmlns="" xmlns:q2="http://www.omg.org/spec/BPMN/20100524/MODEL">_6-468</q2:incoming>
+      <q3:outgoing xmlns="" xmlns:q3="http://www.omg.org/spec/BPMN/20100524/MODEL">_6-470</q3:outgoing>
+    </task>
+    <exclusiveGateway id="GatewayOrderApprovedDecision" name="" gatewayDirection="Diverging">
+      <extensionElements />
+      <q4:incoming xmlns="" xmlns:q4="http://www.omg.org/spec/BPMN/20100524/MODEL">_6-500</q4:incoming>
+      <q5:outgoing xmlns="" xmlns:q5="http://www.omg.org/spec/BPMN/20100524/MODEL">_6-502</q5:outgoing>
+      <q6:outgoing xmlns="" xmlns:q6="http://www.omg.org/spec/BPMN/20100524/MODEL">_6-552</q6:outgoing>
+    </exclusiveGateway>
+    <task id="_6-190" name="Order  Handling" startQuantity="1" completionQuantity="1">
+      <extensionElements />
+      <q7:incoming xmlns="" xmlns:q7="http://www.omg.org/spec/BPMN/20100524/MODEL">_6-504</q7:incoming>
+      <q8:outgoing xmlns="" xmlns:q8="http://www.omg.org/spec/BPMN/20100524/MODEL">_6-508</q8:outgoing>
+    </task>
+    <task id="_6-241" name="Shipping Handling" startQuantity="1" completionQuantity="1">
+      <extensionElements />
+      <q9:incoming xmlns="" xmlns:q9="http://www.omg.org/spec/BPMN/20100524/MODEL">_6-506</q9:incoming>
+      <q10:outgoing xmlns="" xmlns:q10="http://www.omg.org/spec/BPMN/20100524/MODEL">_6-532</q10:outgoing>
+    </task>
+    <userTask id="TaskReviewOrder" name="Review Order" startQuantity="1" completionQuantity="1">
+      <extensionElements />
+      <q11:incoming xmlns="" xmlns:q11="http://www.omg.org/spec/BPMN/20100524/MODEL">_6-534</q11:incoming>
+      <q12:outgoing xmlns="" xmlns:q12="http://www.omg.org/spec/BPMN/20100524/MODEL">_6-536</q12:outgoing>
+    </userTask>
+    <endEvent id="EndProcess" name="">
+      <extensionElements />
+      <q13:incoming xmlns="" xmlns:q13="http://www.omg.org/spec/BPMN/20100524/MODEL">_6-536</q13:incoming>
+      <inputSet>
+        <extensionElements />
+      </inputSet>
+    </endEvent>
+    <parallelGateway id="ParaSplitOrderAndShipment" name="" gatewayDirection="Diverging">
+      <extensionElements />
+      <q14:incoming xmlns="" xmlns:q14="http://www.omg.org/spec/BPMN/20100524/MODEL">_6-502</q14:incoming>
+      <q15:outgoing xmlns="" xmlns:q15="http://www.omg.org/spec/BPMN/20100524/MODEL">_6-504</q15:outgoing>
+      <q16:outgoing xmlns="" xmlns:q16="http://www.omg.org/spec/BPMN/20100524/MODEL">_6-506</q16:outgoing>
+    </parallelGateway>
+    <parallelGateway id="ParaJoinOderAndShipment" name="" gatewayDirection="Converging">
+      <extensionElements />
+      <q17:incoming xmlns="" xmlns:q17="http://www.omg.org/spec/BPMN/20100524/MODEL">_6-508</q17:incoming>
+      <q18:incoming xmlns="" xmlns:q18="http://www.omg.org/spec/BPMN/20100524/MODEL">_6-532</q18:incoming>
+      <q19:outgoing xmlns="" xmlns:q19="http://www.omg.org/spec/BPMN/20100524/MODEL">_6-534</q19:outgoing>
+    </parallelGateway>
+    <endEvent id="TerminateProcess" name="">
+      <extensionElements />
+      <q20:incoming xmlns="" xmlns:q20="http://www.omg.org/spec/BPMN/20100524/MODEL">_6-552</q20:incoming>
+      <inputSet>
+        <extensionElements />
+      </inputSet>
+      <terminateEventDefinition>
+        <extensionElements />
+      </terminateEventDefinition>
+    </endEvent>
+    <userTask id="TaskApproveOrder" name="Approve Order" startQuantity="1" completionQuantity="1">
+      <extensionElements />
+      <q21:incoming xmlns="" xmlns:q21="http://www.omg.org/spec/BPMN/20100524/MODEL">_6-470</q21:incoming>
+      <q22:outgoing xmlns="" xmlns:q22="http://www.omg.org/spec/BPMN/20100524/MODEL">_6-500</q22:outgoing>
+    </userTask>
+    <sequenceFlow id="_6-468" name="" sourceRef="StartProcess" targetRef="TaskQuotationHandling">
+      <extensionElements />
+      <conditionExpression>
+        <extensionElements />
+      </conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_6-470" name="" sourceRef="TaskQuotationHandling" targetRef="TaskApproveOrder">
+      <extensionElements />
+      <conditionExpression>
+        <extensionElements />
+      </conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_6-500" name="" sourceRef="TaskApproveOrder" targetRef="GatewayOrderApprovedDecision">
+      <extensionElements />
+      <conditionExpression>
+        <extensionElements />
+      </conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_6-502" name="Approved" sourceRef="GatewayOrderApprovedDecision" targetRef="ParaSplitOrderAndShipment">
+      <extensionElements />
+      <conditionExpression>
+        <extensionElements />
+      </conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_6-504" name="" sourceRef="ParaSplitOrderAndShipment" targetRef="_6-190">
+      <extensionElements />
+      <conditionExpression>
+        <extensionElements />
+      </conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_6-506" name="" sourceRef="ParaSplitOrderAndShipment" targetRef="_6-241">
+      <extensionElements />
+      <conditionExpression>
+        <extensionElements />
+      </conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_6-508" name="" sourceRef="_6-190" targetRef="ParaJoinOderAndShipment">
+      <extensionElements />
+      <conditionExpression>
+        <extensionElements />
+      </conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_6-532" name="" sourceRef="_6-241" targetRef="ParaJoinOderAndShipment">
+      <extensionElements />
+      <conditionExpression>
+        <extensionElements />
+      </conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_6-534" name="" sourceRef="ParaJoinOderAndShipment" targetRef="TaskReviewOrder">
+      <extensionElements />
+      <conditionExpression>
+        <extensionElements />
+      </conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_6-536" name="" sourceRef="TaskReviewOrder" targetRef="EndProcess">
+      <extensionElements />
+      <conditionExpression>
+        <extensionElements />
+      </conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_6-552" name="" sourceRef="GatewayOrderApprovedDecision" targetRef="TerminateProcess">
+      <extensionElements />
+      <conditionExpression>
+        <extensionElements />
+      </conditionExpression>
+    </sequenceFlow>
+  </process>
+  <collaboration id="C1275486198151">
+    <extensionElements />
+    <participant id="Buyer" name="Buyer" processRef="_6-1">
+      <extensionElements />
       <participantMultiplicity>
         <extensionElements />
       </participantMultiplicity>
     </participant>
-    <participant id="sid-CC644BA1-B9CC-4DA3-90C7-243FFE658F7E" name="Customer" processRef="sid-AA59B2CE-1AFF-49A6-9786-854123AC5F54">
-      <extensionElements>
-        <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffff" xmlns:signavio="http://www.signavio.com" />
-      </extensionElements>
-      <participantMultiplicity>
-        <extensionElements />
-      </participantMultiplicity>
-    </participant>
-    <messageFlow id="sid-80C21DB8-B9BC-4D87-986C-4A55219B81FB" name="" sourceRef="sid-2294910A-71B7-4FB7-9301-F64298377F67" targetRef="sid-E0C185CF-D3D7-45A4-B294-E8CC5334A283">
-      <extensionElements />
-    </messageFlow>
-    <messageFlow id="sid-C103CC7C-F1B0-4659-A62D-EC0E6BD8A4A3" name="" sourceRef="sid-E4A2545B-7489-4891-85F7-3934DCE1A434" targetRef="sid-E80FC980-879D-4D62-BF12-250AD5E05848">
-      <extensionElements />
-    </messageFlow>
-    <messageFlow id="sid-636D66D1-1B41-4B64-9280-D871CFF8745A" name="" sourceRef="sid-8BFCBA5C-E772-4F6E-BCA7-873CA44B369F" targetRef="sid-F1CFA9F0-1745-45DC-B0AC-050A4F6E8571">
-      <extensionElements />
-    </messageFlow>
   </collaboration>
-  <process id="sid-AA59B2CE-1AFF-49A6-9786-854123AC5F54" name="Customer" isExecutable="false">
-    <extensionElements />
-    <auditing>
-      <extensionElements />
-    </auditing>
-    <monitoring>
-      <extensionElements />
-    </monitoring>
-    <laneSet id="sid-600ba918-a6a0-4ba5-b444-f208481a96b1">
-      <extensionElements />
-      <lane id="sid-5E9C3C8A-B1E8-401F-B011-587F2DA30714">
-        <extensionElements>
-          <signavio:signavioMetaData metaKey="bgcolor" metaValue="" xmlns:signavio="http://www.signavio.com" />
-        </extensionElements>
-        <flowNodeRef>sid-C5DEA22B-2768-4A0D-BDDC-50D4645D75DD</flowNodeRef>
-        <flowNodeRef>sid-8BFCBA5C-E772-4F6E-BCA7-873CA44B369F</flowNodeRef>
-        <flowNodeRef>sid-E0C185CF-D3D7-45A4-B294-E8CC5334A283</flowNodeRef>
-        <flowNodeRef>sid-E4A2545B-7489-4891-85F7-3934DCE1A434</flowNodeRef>
-        <flowNodeRef>sid-E3E8B208-8DF1-4B71-ABD5-EF91639AEDAC</flowNodeRef>
-        <flowNodeRef>sid-8890491C-B09A-403D-B715-99692CC64D52</flowNodeRef>
-        <flowNodeRef>sid-20D1A397-8996-4362-913F-C177BE3CEE04</flowNodeRef>
-        <childLaneSet>
-          <extensionElements />
-        </childLaneSet>
-      </lane>
-    </laneSet>
-    <startEvent id="sid-C5DEA22B-2768-4A0D-BDDC-50D4645D75DD" name="">
-      <extensionElements>
-        <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffff" xmlns:signavio="http://www.signavio.com" />
-      </extensionElements>
-      <outgoing>sid-89EFC2E3-AD25-4DD4-9F67-083B31F27CF8</outgoing>
-      <outputSet>
-        <extensionElements />
-      </outputSet>
-    </startEvent>
-    <task id="sid-8BFCBA5C-E772-4F6E-BCA7-873CA44B369F" name="Order" startQuantity="1" completionQuantity="1">
-      <extensionElements>
-        <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc" xmlns:signavio="http://www.signavio.com" />
-        <signavio:signavioMetaData metaKey="risklevel" metaValue="" xmlns:signavio="http://www.signavio.com" />
-        <signavio:signavioMetaData metaKey="externaldocuments" metaValue="" xmlns:signavio="http://www.signavio.com" />
-      </extensionElements>
-      <incoming>sid-89EFC2E3-AD25-4DD4-9F67-083B31F27CF8</incoming>
-      <outgoing>sid-B6240BCC-F776-497E-97AF-7CFC9418686D</outgoing>
-    </task>
-    <receiveTask id="sid-E0C185CF-D3D7-45A4-B294-E8CC5334A283" name="Wait for&#xA;delivery" startQuantity="1" completionQuantity="1" implementation="webService">
-      <extensionElements>
-        <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc" xmlns:signavio="http://www.signavio.com" />
-        <signavio:signavioMetaData metaKey="risklevel" metaValue="" xmlns:signavio="http://www.signavio.com" />
-        <signavio:signavioMetaData metaKey="externaldocuments" metaValue="" xmlns:signavio="http://www.signavio.com" />
-      </extensionElements>
-      <incoming>sid-B6240BCC-F776-497E-97AF-7CFC9418686D</incoming>
-      <outgoing>sid-77732534-FD07-49E9-B035-676A73EAF489</outgoing>
-    </receiveTask>
-    <sendTask id="sid-E4A2545B-7489-4891-85F7-3934DCE1A434" name="Complain" startQuantity="1" completionQuantity="1" implementation="webService">
-      <extensionElements>
-        <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc" xmlns:signavio="http://www.signavio.com" />
-        <signavio:signavioMetaData metaKey="risklevel" metaValue="" xmlns:signavio="http://www.signavio.com" />
-        <signavio:signavioMetaData metaKey="externaldocuments" metaValue="" xmlns:signavio="http://www.signavio.com" />
-      </extensionElements>
-      <incoming>sid-C27F5307-A755-493F-859F-30EB88164ADD</incoming>
-      <outgoing>sid-59ECCD74-2968-403F-B5B0-6E5BB47132BA</outgoing>
-    </sendTask>
-    <exclusiveGateway id="sid-E3E8B208-8DF1-4B71-ABD5-EF91639AEDAC" name="Happy?" gatewayDirection="Diverging">
-      <extensionElements>
-        <signavio:signavioLabel align="center" bottom="false" left="false" ref="text_name" right="false" top="true" valign="bottom" x="21.0" y="-8.0" xmlns:signavio="http://www.signavio.com" />
-        <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffff" xmlns:signavio="http://www.signavio.com" />
-      </extensionElements>
-      <incoming>sid-77732534-FD07-49E9-B035-676A73EAF489</incoming>
-      <outgoing>sid-C27F5307-A755-493F-859F-30EB88164ADD</outgoing>
-      <outgoing>sid-67B68745-2B36-456A-9B22-945CC9DE3C7B</outgoing>
-    </exclusiveGateway>
-    <exclusiveGateway id="sid-8890491C-B09A-403D-B715-99692CC64D52" name="" gatewayDirection="Converging">
-      <extensionElements>
-        <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffff" xmlns:signavio="http://www.signavio.com" />
-      </extensionElements>
-      <incoming>sid-59ECCD74-2968-403F-B5B0-6E5BB47132BA</incoming>
-      <incoming>sid-67B68745-2B36-456A-9B22-945CC9DE3C7B</incoming>
-      <outgoing>sid-97421847-B87C-4AF0-B055-E876911A8D9A</outgoing>
-    </exclusiveGateway>
-    <endEvent id="sid-20D1A397-8996-4362-913F-C177BE3CEE04" name="">
-      <extensionElements>
-        <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffff" xmlns:signavio="http://www.signavio.com" />
-      </extensionElements>
-      <incoming>sid-97421847-B87C-4AF0-B055-E876911A8D9A</incoming>
-      <inputSet>
-        <extensionElements />
-      </inputSet>
-    </endEvent>
-    <sequenceFlow id="sid-89EFC2E3-AD25-4DD4-9F67-083B31F27CF8" name="" sourceRef="sid-C5DEA22B-2768-4A0D-BDDC-50D4645D75DD" targetRef="sid-8BFCBA5C-E772-4F6E-BCA7-873CA44B369F">
-      <extensionElements />
-      <conditionExpression>
-        <extensionElements />
-      </conditionExpression>
-    </sequenceFlow>
-    <sequenceFlow id="sid-B6240BCC-F776-497E-97AF-7CFC9418686D" name="" sourceRef="sid-8BFCBA5C-E772-4F6E-BCA7-873CA44B369F" targetRef="sid-E0C185CF-D3D7-45A4-B294-E8CC5334A283">
-      <extensionElements />
-      <conditionExpression>
-        <extensionElements />
-      </conditionExpression>
-    </sequenceFlow>
-    <sequenceFlow id="sid-77732534-FD07-49E9-B035-676A73EAF489" name="" sourceRef="sid-E0C185CF-D3D7-45A4-B294-E8CC5334A283" targetRef="sid-E3E8B208-8DF1-4B71-ABD5-EF91639AEDAC">
-      <extensionElements />
-      <conditionExpression>
-        <extensionElements />
-      </conditionExpression>
-    </sequenceFlow>
-    <sequenceFlow id="sid-C27F5307-A755-493F-859F-30EB88164ADD" name="No&#xA;" sourceRef="sid-E3E8B208-8DF1-4B71-ABD5-EF91639AEDAC" targetRef="sid-E4A2545B-7489-4891-85F7-3934DCE1A434">
-      <extensionElements />
-      <conditionExpression>
-        <extensionElements />
-      </conditionExpression>
-    </sequenceFlow>
-    <sequenceFlow id="sid-59ECCD74-2968-403F-B5B0-6E5BB47132BA" name="" sourceRef="sid-E4A2545B-7489-4891-85F7-3934DCE1A434" targetRef="sid-8890491C-B09A-403D-B715-99692CC64D52">
-      <extensionElements />
-      <conditionExpression>
-        <extensionElements />
-      </conditionExpression>
-    </sequenceFlow>
-    <sequenceFlow id="sid-97421847-B87C-4AF0-B055-E876911A8D9A" name="" sourceRef="sid-8890491C-B09A-403D-B715-99692CC64D52" targetRef="sid-20D1A397-8996-4362-913F-C177BE3CEE04">
-      <extensionElements />
-      <conditionExpression>
-        <extensionElements />
-      </conditionExpression>
-    </sequenceFlow>
-    <sequenceFlow id="sid-67B68745-2B36-456A-9B22-945CC9DE3C7B" name="Yes&#xA;" sourceRef="sid-E3E8B208-8DF1-4B71-ABD5-EF91639AEDAC" targetRef="sid-8890491C-B09A-403D-B715-99692CC64D52">
-      <extensionElements />
-      <conditionExpression>
-        <extensionElements />
-      </conditionExpression>
-    </sequenceFlow>
-  </process>
-  <process id="sid-88781E70-1C8E-4939-8EA9-B2BA427B2290" name="Shop" isExecutable="false">
-    <extensionElements />
-    <auditing>
-      <extensionElements />
-    </auditing>
-    <monitoring>
-      <extensionElements />
-    </monitoring>
-    <laneSet id="sid-3f7b174f-0fd5-44a6-8422-968250e755a8">
-      <extensionElements />
-      <lane id="sid-A652E41B-5B8C-47BB-9C07-D4304E80E869">
-        <extensionElements>
-          <signavio:signavioMetaData metaKey="bgcolor" metaValue="" xmlns:signavio="http://www.signavio.com" />
-        </extensionElements>
-        <flowNodeRef>sid-F1CFA9F0-1745-45DC-B0AC-050A4F6E8571</flowNodeRef>
-        <flowNodeRef>sid-64C9B4DB-F8E8-410A-9439-FCADAC5393AE</flowNodeRef>
-        <flowNodeRef>sid-2294910A-71B7-4FB7-9301-F64298377F67</flowNodeRef>
-        <flowNodeRef>sid-A291BF37-420D-4854-B471-41F3BE6028AF</flowNodeRef>
-        <flowNodeRef>sid-E80FC980-879D-4D62-BF12-250AD5E05848</flowNodeRef>
-        <flowNodeRef>sid-03710226-0352-4987-B51B-2EC44C13BCDF</flowNodeRef>
-        <flowNodeRef>sid-3622A511-A9D0-455C-A565-C7C4DE455596</flowNodeRef>
-        <flowNodeRef>sid-ABFA4C58-689D-498F-AEF1-BD2765AAC098</flowNodeRef>
-        <childLaneSet>
-          <extensionElements />
-        </childLaneSet>
-      </lane>
-    </laneSet>
-    <startEvent id="sid-F1CFA9F0-1745-45DC-B0AC-050A4F6E8571" name="">
-      <extensionElements>
-        <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffff" xmlns:signavio="http://www.signavio.com" />
-        <signavio:signavioMetaData metaKey="viaitsystem" metaValue="" xmlns:signavio="http://www.signavio.com" />
-      </extensionElements>
-      <outgoing>sid-B8685999-52B2-413C-A78D-30864A7191CE</outgoing>
-      <outputSet>
-        <extensionElements />
-      </outputSet>
-      <messageEventDefinition id="sid-56e04f28-a1e6-4005-9e1f-8e8337eba3e0">
-        <extensionElements />
-      </messageEventDefinition>
-    </startEvent>
-    <task id="sid-64C9B4DB-F8E8-410A-9439-FCADAC5393AE" name="Process order" startQuantity="1" completionQuantity="1">
-      <extensionElements>
-        <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc" xmlns:signavio="http://www.signavio.com" />
-        <signavio:signavioMetaData metaKey="risklevel" metaValue="" xmlns:signavio="http://www.signavio.com" />
-        <signavio:signavioMetaData metaKey="externaldocuments" metaValue="" xmlns:signavio="http://www.signavio.com" />
-      </extensionElements>
-      <incoming>sid-B8685999-52B2-413C-A78D-30864A7191CE</incoming>
-      <outgoing>sid-D6CB4A5D-1CA0-4B98-BABB-65200C63EED5</outgoing>
-    </task>
-    <task id="sid-2294910A-71B7-4FB7-9301-F64298377F67" name="Deliver goods" startQuantity="1" completionQuantity="1">
-      <extensionElements>
-        <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc" xmlns:signavio="http://www.signavio.com" />
-        <signavio:signavioMetaData metaKey="risklevel" metaValue="" xmlns:signavio="http://www.signavio.com" />
-        <signavio:signavioMetaData metaKey="externaldocuments" metaValue="" xmlns:signavio="http://www.signavio.com" />
-      </extensionElements>
-      <incoming>sid-D6CB4A5D-1CA0-4B98-BABB-65200C63EED5</incoming>
-      <outgoing>sid-A119DD42-80EB-4D01-A7A4-CFFEEB90A3BA</outgoing>
-    </task>
-    <endEvent id="sid-A291BF37-420D-4854-B471-41F3BE6028AF" name="">
-      <extensionElements>
-        <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffff" xmlns:signavio="http://www.signavio.com" />
-      </extensionElements>
-      <incoming>sid-A119DD42-80EB-4D01-A7A4-CFFEEB90A3BA</incoming>
-      <inputSet>
-        <extensionElements />
-      </inputSet>
-    </endEvent>
-    <startEvent id="sid-E80FC980-879D-4D62-BF12-250AD5E05848" name="">
-      <extensionElements>
-        <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffff" xmlns:signavio="http://www.signavio.com" />
-        <signavio:signavioMetaData metaKey="viaitsystem" metaValue="" xmlns:signavio="http://www.signavio.com" />
-      </extensionElements>
-      <outgoing>sid-91927AE1-3B74-4808-8FE0-A84138D14C63</outgoing>
-      <outputSet>
-        <extensionElements />
-      </outputSet>
-      <messageEventDefinition id="sid-141d99ba-729a-43d6-b234-a818467fc54a">
-        <extensionElements />
-      </messageEventDefinition>
-    </startEvent>
-    <task id="sid-03710226-0352-4987-B51B-2EC44C13BCDF" name="Process &#xA;complaint" startQuantity="1" completionQuantity="1">
-      <extensionElements>
-        <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc" xmlns:signavio="http://www.signavio.com" />
-        <signavio:signavioMetaData metaKey="risklevel" metaValue="" xmlns:signavio="http://www.signavio.com" />
-        <signavio:signavioMetaData metaKey="externaldocuments" metaValue="" xmlns:signavio="http://www.signavio.com" />
-      </extensionElements>
-      <incoming>sid-91927AE1-3B74-4808-8FE0-A84138D14C63</incoming>
-      <outgoing>sid-60B17C81-4D8D-44BE-8691-82E58AA8FC10</outgoing>
-    </task>
-    <endEvent id="sid-3622A511-A9D0-455C-A565-C7C4DE455596" name="">
-      <extensionElements>
-        <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffff" xmlns:signavio="http://www.signavio.com" />
-      </extensionElements>
-      <incoming>sid-60B17C81-4D8D-44BE-8691-82E58AA8FC10</incoming>
-      <inputSet>
-        <extensionElements />
-      </inputSet>
-    </endEvent>
-    <sequenceFlow id="sid-B8685999-52B2-413C-A78D-30864A7191CE" name="" sourceRef="sid-F1CFA9F0-1745-45DC-B0AC-050A4F6E8571" targetRef="sid-64C9B4DB-F8E8-410A-9439-FCADAC5393AE">
-      <extensionElements />
-      <conditionExpression>
-        <extensionElements />
-      </conditionExpression>
-    </sequenceFlow>
-    <sequenceFlow id="sid-D6CB4A5D-1CA0-4B98-BABB-65200C63EED5" name="" sourceRef="sid-64C9B4DB-F8E8-410A-9439-FCADAC5393AE" targetRef="sid-2294910A-71B7-4FB7-9301-F64298377F67">
-      <extensionElements />
-      <conditionExpression>
-        <extensionElements />
-      </conditionExpression>
-    </sequenceFlow>
-    <sequenceFlow id="sid-A119DD42-80EB-4D01-A7A4-CFFEEB90A3BA" name="" sourceRef="sid-2294910A-71B7-4FB7-9301-F64298377F67" targetRef="sid-A291BF37-420D-4854-B471-41F3BE6028AF">
-      <extensionElements />
-      <conditionExpression>
-        <extensionElements />
-      </conditionExpression>
-    </sequenceFlow>
-    <sequenceFlow id="sid-91927AE1-3B74-4808-8FE0-A84138D14C63" name="" sourceRef="sid-E80FC980-879D-4D62-BF12-250AD5E05848" targetRef="sid-03710226-0352-4987-B51B-2EC44C13BCDF">
-      <extensionElements />
-      <conditionExpression>
-        <extensionElements />
-      </conditionExpression>
-    </sequenceFlow>
-    <sequenceFlow id="sid-60B17C81-4D8D-44BE-8691-82E58AA8FC10" name="" sourceRef="sid-03710226-0352-4987-B51B-2EC44C13BCDF" targetRef="sid-3622A511-A9D0-455C-A565-C7C4DE455596">
-      <extensionElements />
-      <conditionExpression>
-        <extensionElements />
-      </conditionExpression>
-    </sequenceFlow>
-    <association id="sid-D075552B-0852-4350-B843-0D7E4D289F14" sourceRef="sid-64C9B4DB-F8E8-410A-9439-FCADAC5393AE" targetRef="sid-ABFA4C58-689D-498F-AEF1-BD2765AAC098">
-      <extensionElements />
-    </association>
-    <textAnnotation id="sid-ABFA4C58-689D-498F-AEF1-BD2765AAC098">
-      <extensionElements />
-      <text>Standard
-processing</text>
-    </textAnnotation>
-  </process>
-  <BPMNDiagram id="sid-4434d895-3d58-4677-84eb-4d3e80afa4e1" xmlns="http://www.omg.org/spec/BPMN/20100524/DI">
-    <BPMNPlane id="sid-56486489-08f0-4b4a-ac93-07b1fbe68071" xmlns:q1="http://www.omg.org/spec/BPMN/20100524/MODEL" bpmnElement="q1:sid-9c3f83ca-231a-4340-a91b-ef7bc07c731d">
+  <BPMNDiagram name="Order Process" documentation="" resolution="96.000002670288083" id="Trisotech.Visio-_6" xmlns="http://www.omg.org/spec/BPMN/20100524/DI">
+    <BPMNPlane bpmnElement="C1275486198151">
       <extension xmlns="http://www.omg.org/spec/DD/20100524/DI" />
-      <BPMNShape id="sid-F5FDF0E3-FD8C-4E91-B480-0E6A14685383_gui" bpmnElement="q1:sid-F5FDF0E3-FD8C-4E91-B480-0E6A14685383" isHorizontal="true">
+      <BPMNShape id="Trisotech.Visio_Buyer" bpmnElement="Buyer" isHorizontal="true">
         <extension xmlns="http://www.omg.org/spec/DD/20100524/DI" />
-        <Bounds x="60" y="390" width="1074" height="270" xmlns="http://www.omg.org/spec/DD/20100524/DC" />
+        <Bounds x="84" y="276" width="924" height="252" xmlns="http://www.omg.org/spec/DD/20100524/DC" />
+        <BPMNLabel>
+          <extension xmlns="http://www.omg.org/spec/DD/20100524/DI" />
+          <Bounds x="0" y="0" width="0" height="0" xmlns="http://www.omg.org/spec/DD/20100524/DC" />
+        </BPMNLabel>
       </BPMNShape>
-      <BPMNShape id="sid-CC644BA1-B9CC-4DA3-90C7-243FFE658F7E_gui" bpmnElement="q1:sid-CC644BA1-B9CC-4DA3-90C7-243FFE658F7E" isHorizontal="true">
+      <BPMNShape id="Trisotech.Visio__6_StartProcess" bpmnElement="StartProcess">
         <extension xmlns="http://www.omg.org/spec/DD/20100524/DI" />
-        <Bounds x="60" y="60" width="1074" height="283" xmlns="http://www.omg.org/spec/DD/20100524/DC" />
+        <Bounds x="120" y="393" width="30" height="30" xmlns="http://www.omg.org/spec/DD/20100524/DC" />
+        <BPMNLabel>
+          <extension xmlns="http://www.omg.org/spec/DD/20100524/DI" />
+          <Bounds x="0" y="0" width="0" height="0" xmlns="http://www.omg.org/spec/DD/20100524/DC" />
+        </BPMNLabel>
       </BPMNShape>
-      <BPMNShape id="sid-5E9C3C8A-B1E8-401F-B011-587F2DA30714_gui" bpmnElement="q1:sid-5E9C3C8A-B1E8-401F-B011-587F2DA30714" isHorizontal="true">
+      <BPMNShape id="Trisotech.Visio__6_TaskQuotationHandling" bpmnElement="TaskQuotationHandling">
         <extension xmlns="http://www.omg.org/spec/DD/20100524/DI" />
-        <Bounds x="90" y="60" width="1044" height="283" xmlns="http://www.omg.org/spec/DD/20100524/DC" />
+        <Bounds x="175" y="374" width="83" height="68" xmlns="http://www.omg.org/spec/DD/20100524/DC" />
+        <BPMNLabel>
+          <extension xmlns="http://www.omg.org/spec/DD/20100524/DI" />
+          <Bounds x="0" y="0" width="0" height="0" xmlns="http://www.omg.org/spec/DD/20100524/DC" />
+        </BPMNLabel>
       </BPMNShape>
-      <BPMNShape id="sid-C5DEA22B-2768-4A0D-BDDC-50D4645D75DD_gui" bpmnElement="q1:sid-C5DEA22B-2768-4A0D-BDDC-50D4645D75DD">
+      <BPMNShape id="Trisotech.Visio__6_GatewayOrderApprovedDecision" bpmnElement="GatewayOrderApprovedDecision" isMarkerVisible="false">
         <extension xmlns="http://www.omg.org/spec/DD/20100524/DI" />
-        <Bounds x="120" y="170" width="30" height="30" xmlns="http://www.omg.org/spec/DD/20100524/DC" />
+        <Bounds x="419" y="387" width="42" height="42" xmlns="http://www.omg.org/spec/DD/20100524/DC" />
+        <BPMNLabel>
+          <extension xmlns="http://www.omg.org/spec/DD/20100524/DI" />
+          <Bounds x="0" y="0" width="0" height="0" xmlns="http://www.omg.org/spec/DD/20100524/DC" />
+        </BPMNLabel>
       </BPMNShape>
-      <BPMNShape id="sid-8BFCBA5C-E772-4F6E-BCA7-873CA44B369F_gui" bpmnElement="q1:sid-8BFCBA5C-E772-4F6E-BCA7-873CA44B369F">
+      <BPMNShape id="Trisotech.Visio__6__6-190" bpmnElement="_6-190">
         <extension xmlns="http://www.omg.org/spec/DD/20100524/DI" />
-        <Bounds x="195" y="145" width="100" height="80" xmlns="http://www.omg.org/spec/DD/20100524/DC" />
+        <Bounds x="578" y="312" width="83" height="68" xmlns="http://www.omg.org/spec/DD/20100524/DC" />
+        <BPMNLabel>
+          <extension xmlns="http://www.omg.org/spec/DD/20100524/DI" />
+          <Bounds x="0" y="0" width="0" height="0" xmlns="http://www.omg.org/spec/DD/20100524/DC" />
+        </BPMNLabel>
       </BPMNShape>
-      <BPMNShape id="sid-E0C185CF-D3D7-45A4-B294-E8CC5334A283_gui" bpmnElement="q1:sid-E0C185CF-D3D7-45A4-B294-E8CC5334A283">
+      <BPMNShape id="Trisotech.Visio__6__6-241" bpmnElement="_6-241">
         <extension xmlns="http://www.omg.org/spec/DD/20100524/DI" />
-        <Bounds x="540" y="145" width="100" height="80" xmlns="http://www.omg.org/spec/DD/20100524/DC" />
+        <Bounds x="578" y="442" width="83" height="68" xmlns="http://www.omg.org/spec/DD/20100524/DC" />
+        <BPMNLabel>
+          <extension xmlns="http://www.omg.org/spec/DD/20100524/DI" />
+          <Bounds x="0" y="0" width="0" height="0" xmlns="http://www.omg.org/spec/DD/20100524/DC" />
+        </BPMNLabel>
       </BPMNShape>
-      <BPMNShape id="sid-E4A2545B-7489-4891-85F7-3934DCE1A434_gui" bpmnElement="q1:sid-E4A2545B-7489-4891-85F7-3934DCE1A434">
+      <BPMNShape id="Trisotech.Visio__6_TaskReviewOrder" bpmnElement="TaskReviewOrder">
         <extension xmlns="http://www.omg.org/spec/DD/20100524/DI" />
-        <Bounds x="795" y="225" width="100" height="80" xmlns="http://www.omg.org/spec/DD/20100524/DC" />
+        <Bounds x="746" y="374" width="83" height="68" xmlns="http://www.omg.org/spec/DD/20100524/DC" />
+        <BPMNLabel>
+          <extension xmlns="http://www.omg.org/spec/DD/20100524/DI" />
+          <Bounds x="0" y="0" width="0" height="0" xmlns="http://www.omg.org/spec/DD/20100524/DC" />
+        </BPMNLabel>
       </BPMNShape>
-      <BPMNShape id="sid-E3E8B208-8DF1-4B71-ABD5-EF91639AEDAC_gui" bpmnElement="q1:sid-E3E8B208-8DF1-4B71-ABD5-EF91639AEDAC" isMarkerVisible="true">
+      <BPMNShape id="Trisotech.Visio__6_EndProcess" bpmnElement="EndProcess">
         <extension xmlns="http://www.omg.org/spec/DD/20100524/DI" />
-        <Bounds x="705" y="165" width="40" height="40" xmlns="http://www.omg.org/spec/DD/20100524/DC" />
+        <Bounds x="860" y="392" width="32" height="32" xmlns="http://www.omg.org/spec/DD/20100524/DC" />
+        <BPMNLabel>
+          <extension xmlns="http://www.omg.org/spec/DD/20100524/DI" />
+          <Bounds x="0" y="0" width="0" height="0" xmlns="http://www.omg.org/spec/DD/20100524/DC" />
+        </BPMNLabel>
       </BPMNShape>
-      <BPMNShape id="sid-8890491C-B09A-403D-B715-99692CC64D52_gui" bpmnElement="q1:sid-8890491C-B09A-403D-B715-99692CC64D52" isMarkerVisible="true">
+      <BPMNShape id="Trisotech.Visio__6_ParaSplitOrderAndShipment" bpmnElement="ParaSplitOrderAndShipment">
         <extension xmlns="http://www.omg.org/spec/DD/20100524/DI" />
-        <Bounds x="954" y="165" width="40" height="40" xmlns="http://www.omg.org/spec/DD/20100524/DC" />
+        <Bounds x="527" y="387" width="42" height="42" xmlns="http://www.omg.org/spec/DD/20100524/DC" />
+        <BPMNLabel>
+          <extension xmlns="http://www.omg.org/spec/DD/20100524/DI" />
+          <Bounds x="0" y="0" width="0" height="0" xmlns="http://www.omg.org/spec/DD/20100524/DC" />
+        </BPMNLabel>
       </BPMNShape>
-      <BPMNShape id="sid-20D1A397-8996-4362-913F-C177BE3CEE04_gui" bpmnElement="q1:sid-20D1A397-8996-4362-913F-C177BE3CEE04">
+      <BPMNShape id="Trisotech.Visio__6_ParaJoinOderAndShipment" bpmnElement="ParaJoinOderAndShipment">
         <extension xmlns="http://www.omg.org/spec/DD/20100524/DI" />
-        <Bounds x="1065" y="171" width="28" height="28" xmlns="http://www.omg.org/spec/DD/20100524/DC" />
+        <Bounds x="668" y="387" width="42" height="42" xmlns="http://www.omg.org/spec/DD/20100524/DC" />
+        <BPMNLabel>
+          <extension xmlns="http://www.omg.org/spec/DD/20100524/DI" />
+          <Bounds x="0" y="0" width="0" height="0" xmlns="http://www.omg.org/spec/DD/20100524/DC" />
+        </BPMNLabel>
       </BPMNShape>
-      <BPMNShape id="sid-A652E41B-5B8C-47BB-9C07-D4304E80E869_gui" bpmnElement="q1:sid-A652E41B-5B8C-47BB-9C07-D4304E80E869" isHorizontal="true">
+      <BPMNShape id="Trisotech.Visio__6_TerminateProcess" bpmnElement="TerminateProcess">
         <extension xmlns="http://www.omg.org/spec/DD/20100524/DI" />
-        <Bounds x="90" y="390" width="1044" height="270" xmlns="http://www.omg.org/spec/DD/20100524/DC" />
+        <Bounds x="424" y="320" width="32" height="32" xmlns="http://www.omg.org/spec/DD/20100524/DC" />
+        <BPMNLabel>
+          <extension xmlns="http://www.omg.org/spec/DD/20100524/DI" />
+          <Bounds x="0" y="0" width="0" height="0" xmlns="http://www.omg.org/spec/DD/20100524/DC" />
+        </BPMNLabel>
       </BPMNShape>
-      <BPMNShape id="sid-F1CFA9F0-1745-45DC-B0AC-050A4F6E8571_gui" bpmnElement="q1:sid-F1CFA9F0-1745-45DC-B0AC-050A4F6E8571">
+      <BPMNShape id="Trisotech.Visio__6_TaskApproveOrder" bpmnElement="TaskApproveOrder">
         <extension xmlns="http://www.omg.org/spec/DD/20100524/DI" />
-        <Bounds x="240" y="500" width="30" height="30" xmlns="http://www.omg.org/spec/DD/20100524/DC" />
+        <Bounds x="294" y="374" width="83" height="68" xmlns="http://www.omg.org/spec/DD/20100524/DC" />
+        <BPMNLabel>
+          <extension xmlns="http://www.omg.org/spec/DD/20100524/DI" />
+          <Bounds x="0" y="0" width="0" height="0" xmlns="http://www.omg.org/spec/DD/20100524/DC" />
+        </BPMNLabel>
       </BPMNShape>
-      <BPMNShape id="sid-64C9B4DB-F8E8-410A-9439-FCADAC5393AE_gui" bpmnElement="q1:sid-64C9B4DB-F8E8-410A-9439-FCADAC5393AE">
+      <BPMNEdge id="Trisotech.Visio__6__6-500" bpmnElement="_6-500">
         <extension xmlns="http://www.omg.org/spec/DD/20100524/DI" />
-        <Bounds x="360" y="475" width="100" height="80" xmlns="http://www.omg.org/spec/DD/20100524/DC" />
-      </BPMNShape>
-      <BPMNShape id="sid-2294910A-71B7-4FB7-9301-F64298377F67_gui" bpmnElement="q1:sid-2294910A-71B7-4FB7-9301-F64298377F67">
-        <extension xmlns="http://www.omg.org/spec/DD/20100524/DI" />
-        <Bounds x="540" y="475" width="100" height="80" xmlns="http://www.omg.org/spec/DD/20100524/DC" />
-      </BPMNShape>
-      <BPMNShape id="sid-A291BF37-420D-4854-B471-41F3BE6028AF_gui" bpmnElement="q1:sid-A291BF37-420D-4854-B471-41F3BE6028AF">
-        <extension xmlns="http://www.omg.org/spec/DD/20100524/DI" />
-        <Bounds x="705" y="501" width="28" height="28" xmlns="http://www.omg.org/spec/DD/20100524/DC" />
-      </BPMNShape>
-      <BPMNShape id="sid-E80FC980-879D-4D62-BF12-250AD5E05848_gui" bpmnElement="q1:sid-E80FC980-879D-4D62-BF12-250AD5E05848">
-        <extension xmlns="http://www.omg.org/spec/DD/20100524/DI" />
-        <Bounds x="830" y="500" width="30" height="30" xmlns="http://www.omg.org/spec/DD/20100524/DC" />
-      </BPMNShape>
-      <BPMNShape id="sid-03710226-0352-4987-B51B-2EC44C13BCDF_gui" bpmnElement="q1:sid-03710226-0352-4987-B51B-2EC44C13BCDF">
-        <extension xmlns="http://www.omg.org/spec/DD/20100524/DI" />
-        <Bounds x="924" y="475" width="100" height="80" xmlns="http://www.omg.org/spec/DD/20100524/DC" />
-      </BPMNShape>
-      <BPMNShape id="sid-3622A511-A9D0-455C-A565-C7C4DE455596_gui" bpmnElement="q1:sid-3622A511-A9D0-455C-A565-C7C4DE455596">
-        <extension xmlns="http://www.omg.org/spec/DD/20100524/DI" />
-        <Bounds x="1065" y="501" width="28" height="28" xmlns="http://www.omg.org/spec/DD/20100524/DC" />
-      </BPMNShape>
-      <BPMNShape id="sid-ABFA4C58-689D-498F-AEF1-BD2765AAC098_gui" bpmnElement="q1:sid-ABFA4C58-689D-498F-AEF1-BD2765AAC098">
-        <extension xmlns="http://www.omg.org/spec/DD/20100524/DI" />
-        <Bounds x="375" y="585" width="100" height="50" xmlns="http://www.omg.org/spec/DD/20100524/DC" />
-      </BPMNShape>
-      <BPMNEdge id="sid-B8685999-52B2-413C-A78D-30864A7191CE_gui" bpmnElement="q1:sid-B8685999-52B2-413C-A78D-30864A7191CE">
-        <extension xmlns="http://www.omg.org/spec/DD/20100524/DI" />
-        <waypoint x="270" y="515" xmlns="http://www.omg.org/spec/DD/20100524/DI" />
-        <waypoint x="360" y="515" xmlns="http://www.omg.org/spec/DD/20100524/DI" />
+        <waypoint x="377" y="408" xmlns="http://www.omg.org/spec/DD/20100524/DI" />
+        <waypoint x="419" y="408" xmlns="http://www.omg.org/spec/DD/20100524/DI" />
+        <BPMNLabel>
+          <extension xmlns="http://www.omg.org/spec/DD/20100524/DI" />
+          <Bounds x="0" y="0" width="0" height="0" xmlns="http://www.omg.org/spec/DD/20100524/DC" />
+        </BPMNLabel>
       </BPMNEdge>
-      <BPMNEdge id="sid-89EFC2E3-AD25-4DD4-9F67-083B31F27CF8_gui" bpmnElement="q1:sid-89EFC2E3-AD25-4DD4-9F67-083B31F27CF8">
+      <BPMNEdge id="Trisotech.Visio__6__6-536" bpmnElement="_6-536">
         <extension xmlns="http://www.omg.org/spec/DD/20100524/DI" />
-        <waypoint x="150" y="185" xmlns="http://www.omg.org/spec/DD/20100524/DI" />
-        <waypoint x="195" y="185" xmlns="http://www.omg.org/spec/DD/20100524/DI" />
+        <waypoint x="830" y="408" xmlns="http://www.omg.org/spec/DD/20100524/DI" />
+        <waypoint x="848" y="408" xmlns="http://www.omg.org/spec/DD/20100524/DI" />
+        <waypoint x="860" y="408" xmlns="http://www.omg.org/spec/DD/20100524/DI" />
+        <BPMNLabel>
+          <extension xmlns="http://www.omg.org/spec/DD/20100524/DI" />
+          <Bounds x="0" y="0" width="0" height="0" xmlns="http://www.omg.org/spec/DD/20100524/DC" />
+        </BPMNLabel>
       </BPMNEdge>
-      <BPMNEdge id="sid-80C21DB8-B9BC-4D87-986C-4A55219B81FB_gui" bpmnElement="q1:sid-80C21DB8-B9BC-4D87-986C-4A55219B81FB">
+      <BPMNEdge id="Trisotech.Visio__6__6-534" bpmnElement="_6-534">
         <extension xmlns="http://www.omg.org/spec/DD/20100524/DI" />
-        <waypoint x="590" y="475" xmlns="http://www.omg.org/spec/DD/20100524/DI" />
-        <waypoint x="590" y="225" xmlns="http://www.omg.org/spec/DD/20100524/DI" />
+        <waypoint x="710" y="408" xmlns="http://www.omg.org/spec/DD/20100524/DI" />
+        <waypoint x="728" y="408" xmlns="http://www.omg.org/spec/DD/20100524/DI" />
+        <waypoint x="746" y="408" xmlns="http://www.omg.org/spec/DD/20100524/DI" />
+        <BPMNLabel>
+          <extension xmlns="http://www.omg.org/spec/DD/20100524/DI" />
+          <Bounds x="0" y="0" width="0" height="0" xmlns="http://www.omg.org/spec/DD/20100524/DC" />
+        </BPMNLabel>
       </BPMNEdge>
-      <BPMNEdge id="sid-A119DD42-80EB-4D01-A7A4-CFFEEB90A3BA_gui" bpmnElement="q1:sid-A119DD42-80EB-4D01-A7A4-CFFEEB90A3BA">
+      <BPMNEdge id="Trisotech.Visio__6__6-532" bpmnElement="_6-532">
         <extension xmlns="http://www.omg.org/spec/DD/20100524/DI" />
-        <waypoint x="640" y="515" xmlns="http://www.omg.org/spec/DD/20100524/DI" />
-        <waypoint x="705" y="515" xmlns="http://www.omg.org/spec/DD/20100524/DI" />
+        <waypoint x="662" y="476" xmlns="http://www.omg.org/spec/DD/20100524/DI" />
+        <waypoint x="689" y="476" xmlns="http://www.omg.org/spec/DD/20100524/DI" />
+        <waypoint x="689" y="429" xmlns="http://www.omg.org/spec/DD/20100524/DI" />
+        <BPMNLabel>
+          <extension xmlns="http://www.omg.org/spec/DD/20100524/DI" />
+          <Bounds x="0" y="0" width="0" height="0" xmlns="http://www.omg.org/spec/DD/20100524/DC" />
+        </BPMNLabel>
       </BPMNEdge>
-      <BPMNEdge id="sid-C103CC7C-F1B0-4659-A62D-EC0E6BD8A4A3_gui" bpmnElement="q1:sid-C103CC7C-F1B0-4659-A62D-EC0E6BD8A4A3">
+      <BPMNEdge id="Trisotech.Visio__6__6-470" bpmnElement="_6-470">
         <extension xmlns="http://www.omg.org/spec/DD/20100524/DI" />
-        <waypoint x="845" y="305" xmlns="http://www.omg.org/spec/DD/20100524/DI" />
-        <waypoint x="845" y="500" xmlns="http://www.omg.org/spec/DD/20100524/DI" />
+        <waypoint x="258" y="408" xmlns="http://www.omg.org/spec/DD/20100524/DI" />
+        <waypoint x="294" y="408" xmlns="http://www.omg.org/spec/DD/20100524/DI" />
+        <BPMNLabel>
+          <extension xmlns="http://www.omg.org/spec/DD/20100524/DI" />
+          <Bounds x="0" y="0" width="0" height="0" xmlns="http://www.omg.org/spec/DD/20100524/DC" />
+        </BPMNLabel>
       </BPMNEdge>
-      <BPMNEdge id="sid-59ECCD74-2968-403F-B5B0-6E5BB47132BA_gui" bpmnElement="q1:sid-59ECCD74-2968-403F-B5B0-6E5BB47132BA">
+      <BPMNEdge id="Trisotech.Visio__6__6-552" bpmnElement="_6-552">
         <extension xmlns="http://www.omg.org/spec/DD/20100524/DI" />
-        <waypoint x="895" y="265" xmlns="http://www.omg.org/spec/DD/20100524/DI" />
-        <waypoint x="974.5" y="265" xmlns="http://www.omg.org/spec/DD/20100524/DI" />
-        <waypoint x="974.5" y="205" xmlns="http://www.omg.org/spec/DD/20100524/DI" />
+        <waypoint x="440" y="387" xmlns="http://www.omg.org/spec/DD/20100524/DI" />
+        <waypoint x="440" y="352" xmlns="http://www.omg.org/spec/DD/20100524/DI" />
+        <BPMNLabel>
+          <extension xmlns="http://www.omg.org/spec/DD/20100524/DI" />
+          <Bounds x="0" y="0" width="0" height="0" xmlns="http://www.omg.org/spec/DD/20100524/DC" />
+        </BPMNLabel>
       </BPMNEdge>
-      <BPMNEdge id="sid-636D66D1-1B41-4B64-9280-D871CFF8745A_gui" bpmnElement="q1:sid-636D66D1-1B41-4B64-9280-D871CFF8745A">
+      <BPMNEdge id="Trisotech.Visio__6__6-508" bpmnElement="_6-508">
         <extension xmlns="http://www.omg.org/spec/DD/20100524/DI" />
-        <waypoint x="255" y="225" xmlns="http://www.omg.org/spec/DD/20100524/DI" />
-        <waypoint x="255" y="500" xmlns="http://www.omg.org/spec/DD/20100524/DI" />
+        <waypoint x="662" y="346" xmlns="http://www.omg.org/spec/DD/20100524/DI" />
+        <waypoint x="689" y="346" xmlns="http://www.omg.org/spec/DD/20100524/DI" />
+        <waypoint x="689" y="387" xmlns="http://www.omg.org/spec/DD/20100524/DI" />
+        <BPMNLabel>
+          <extension xmlns="http://www.omg.org/spec/DD/20100524/DI" />
+          <Bounds x="0" y="0" width="0" height="0" xmlns="http://www.omg.org/spec/DD/20100524/DC" />
+        </BPMNLabel>
       </BPMNEdge>
-      <BPMNEdge id="sid-D6CB4A5D-1CA0-4B98-BABB-65200C63EED5_gui" bpmnElement="q1:sid-D6CB4A5D-1CA0-4B98-BABB-65200C63EED5">
+      <BPMNEdge id="Trisotech.Visio__6__6-506" bpmnElement="_6-506">
         <extension xmlns="http://www.omg.org/spec/DD/20100524/DI" />
-        <waypoint x="460" y="515" xmlns="http://www.omg.org/spec/DD/20100524/DI" />
-        <waypoint x="540" y="515" xmlns="http://www.omg.org/spec/DD/20100524/DI" />
+        <waypoint x="548" y="429" xmlns="http://www.omg.org/spec/DD/20100524/DI" />
+        <waypoint x="548" y="476" xmlns="http://www.omg.org/spec/DD/20100524/DI" />
+        <waypoint x="578" y="476" xmlns="http://www.omg.org/spec/DD/20100524/DI" />
+        <BPMNLabel>
+          <extension xmlns="http://www.omg.org/spec/DD/20100524/DI" />
+          <Bounds x="0" y="0" width="0" height="0" xmlns="http://www.omg.org/spec/DD/20100524/DC" />
+        </BPMNLabel>
       </BPMNEdge>
-      <BPMNEdge id="sid-C27F5307-A755-493F-859F-30EB88164ADD_gui" bpmnElement="q1:sid-C27F5307-A755-493F-859F-30EB88164ADD">
+      <BPMNEdge id="Trisotech.Visio__6__6-504" bpmnElement="_6-504">
         <extension xmlns="http://www.omg.org/spec/DD/20100524/DI" />
-        <waypoint x="725.5" y="205" xmlns="http://www.omg.org/spec/DD/20100524/DI" />
-        <waypoint x="725.5" y="265" xmlns="http://www.omg.org/spec/DD/20100524/DI" />
-        <waypoint x="795" y="265" xmlns="http://www.omg.org/spec/DD/20100524/DI" />
+        <waypoint x="548" y="387" xmlns="http://www.omg.org/spec/DD/20100524/DI" />
+        <waypoint x="548" y="346" xmlns="http://www.omg.org/spec/DD/20100524/DI" />
+        <waypoint x="578" y="346" xmlns="http://www.omg.org/spec/DD/20100524/DI" />
+        <BPMNLabel>
+          <extension xmlns="http://www.omg.org/spec/DD/20100524/DI" />
+          <Bounds x="0" y="0" width="0" height="0" xmlns="http://www.omg.org/spec/DD/20100524/DC" />
+        </BPMNLabel>
       </BPMNEdge>
-      <BPMNEdge id="sid-D075552B-0852-4350-B843-0D7E4D289F14_gui" bpmnElement="q1:sid-D075552B-0852-4350-B843-0D7E4D289F14">
+      <BPMNEdge id="Trisotech.Visio__6__6-468" bpmnElement="_6-468">
         <extension xmlns="http://www.omg.org/spec/DD/20100524/DI" />
-        <waypoint x="395.531914893617" y="555" xmlns="http://www.omg.org/spec/DD/20100524/DI" />
-        <waypoint x="384.68085106382978" y="585" xmlns="http://www.omg.org/spec/DD/20100524/DI" />
+        <waypoint x="150" y="408" xmlns="http://www.omg.org/spec/DD/20100524/DI" />
+        <waypoint x="164" y="408" xmlns="http://www.omg.org/spec/DD/20100524/DI" />
+        <waypoint x="175" y="408" xmlns="http://www.omg.org/spec/DD/20100524/DI" />
+        <BPMNLabel>
+          <extension xmlns="http://www.omg.org/spec/DD/20100524/DI" />
+          <Bounds x="0" y="0" width="0" height="0" xmlns="http://www.omg.org/spec/DD/20100524/DC" />
+        </BPMNLabel>
       </BPMNEdge>
-      <BPMNEdge id="sid-91927AE1-3B74-4808-8FE0-A84138D14C63_gui" bpmnElement="q1:sid-91927AE1-3B74-4808-8FE0-A84138D14C63">
+      <BPMNEdge id="Trisotech.Visio__6__6-502" bpmnElement="_6-502">
         <extension xmlns="http://www.omg.org/spec/DD/20100524/DI" />
-        <waypoint x="860" y="515" xmlns="http://www.omg.org/spec/DD/20100524/DI" />
-        <waypoint x="924" y="515" xmlns="http://www.omg.org/spec/DD/20100524/DI" />
-      </BPMNEdge>
-      <BPMNEdge id="sid-67B68745-2B36-456A-9B22-945CC9DE3C7B_gui" bpmnElement="q1:sid-67B68745-2B36-456A-9B22-945CC9DE3C7B">
-        <extension xmlns="http://www.omg.org/spec/DD/20100524/DI" />
-        <waypoint x="745" y="185.5" xmlns="http://www.omg.org/spec/DD/20100524/DI" />
-        <waypoint x="954" y="185.5" xmlns="http://www.omg.org/spec/DD/20100524/DI" />
-      </BPMNEdge>
-      <BPMNEdge id="sid-97421847-B87C-4AF0-B055-E876911A8D9A_gui" bpmnElement="q1:sid-97421847-B87C-4AF0-B055-E876911A8D9A">
-        <extension xmlns="http://www.omg.org/spec/DD/20100524/DI" />
-        <waypoint x="994" y="185.40669856459331" xmlns="http://www.omg.org/spec/DD/20100524/DI" />
-        <waypoint x="1065" y="185.06698564593302" xmlns="http://www.omg.org/spec/DD/20100524/DI" />
-      </BPMNEdge>
-      <BPMNEdge id="sid-77732534-FD07-49E9-B035-676A73EAF489_gui" bpmnElement="q1:sid-77732534-FD07-49E9-B035-676A73EAF489">
-        <extension xmlns="http://www.omg.org/spec/DD/20100524/DI" />
-        <waypoint x="640" y="185.18450184501845" xmlns="http://www.omg.org/spec/DD/20100524/DI" />
-        <waypoint x="705" y="185.42435424354244" xmlns="http://www.omg.org/spec/DD/20100524/DI" />
-      </BPMNEdge>
-      <BPMNEdge id="sid-60B17C81-4D8D-44BE-8691-82E58AA8FC10_gui" bpmnElement="q1:sid-60B17C81-4D8D-44BE-8691-82E58AA8FC10">
-        <extension xmlns="http://www.omg.org/spec/DD/20100524/DI" />
-        <waypoint x="1024" y="515" xmlns="http://www.omg.org/spec/DD/20100524/DI" />
-        <waypoint x="1065" y="515" xmlns="http://www.omg.org/spec/DD/20100524/DI" />
-      </BPMNEdge>
-      <BPMNEdge id="sid-B6240BCC-F776-497E-97AF-7CFC9418686D_gui" bpmnElement="q1:sid-B6240BCC-F776-497E-97AF-7CFC9418686D">
-        <extension xmlns="http://www.omg.org/spec/DD/20100524/DI" />
-        <waypoint x="295" y="185" xmlns="http://www.omg.org/spec/DD/20100524/DI" />
-        <waypoint x="540" y="185" xmlns="http://www.omg.org/spec/DD/20100524/DI" />
+        <waypoint x="461" y="408" xmlns="http://www.omg.org/spec/DD/20100524/DI" />
+        <waypoint x="527" y="408" xmlns="http://www.omg.org/spec/DD/20100524/DI" />
+        <BPMNLabel>
+          <extension xmlns="http://www.omg.org/spec/DD/20100524/DI" />
+          <Bounds x="0" y="0" width="0" height="0" xmlns="http://www.omg.org/spec/DD/20100524/DC" />
+        </BPMNLabel>
       </BPMNEdge>
     </BPMNPlane>
   </BPMNDiagram>

@@ -794,7 +794,7 @@ namespace Inq.BPMN
     public partial class BPMNEdge : LabeledEdge
     {
         
-        //private BPMNLabel _bPMNLabel;
+        private BPMNLabel _bPMNLabel;
         
         private System.Xml.XmlQualifiedName _bpmnElement;
         
@@ -806,23 +806,23 @@ namespace Inq.BPMN
         
         public BPMNEdge()
         {
-          //  this._bPMNLabel = new BPMNLabel();
+           this._bPMNLabel = new BPMNLabel();
         }
 
         //[System.Xml.Serialization.XmlElementAttribute("Node", typeof(Node))]
         //[System.Xml.Serialization.XmlElementAttribute("Label", typeof(Label))]
-        //[System.Xml.Serialization.XmlElementAttribute(Order=0)]
-        //public BPMNLabel BPMNLabel
-        //{
-        //    get
-        //    {
-        //        return this._bPMNLabel;
-        //    }
-        //    set
-        //    {
-        //        this._bPMNLabel = value;
-        //    }
-        //}
+        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        public BPMNLabel BPMNLabel
+        {
+            get
+            {
+                return this._bPMNLabel;
+            }
+            set
+            {
+                this._bPMNLabel = value;
+            }
+        }
         
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public System.Xml.XmlQualifiedName bpmnElement
@@ -1050,7 +1050,7 @@ namespace Inq.BPMN
     public partial class BPMNShape : LabeledShape
     {
         
-     //   private BPMNLabel _bPMNLabel;
+        private BPMNLabel _bPMNLabel;
         
         private System.Xml.XmlQualifiedName _bpmnElement;
         
@@ -1068,21 +1068,21 @@ namespace Inq.BPMN
         
         public BPMNShape()
         {
-            //this._bPMNLabel = new BPMNLabel();
+            this._bPMNLabel = new BPMNLabel();
         }
-        
-        //[System.Xml.Serialization.XmlElementAttribute(Order=0)]
-        //public BPMNLabel BPMNLabel
-        //{
-        //    get
-        //    {
-        //        return this._bPMNLabel;
-        //    }
-        //    set
-        //    {
-        //        this._bPMNLabel = value;
-        //    }
-        //}
+
+        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        public BPMNLabel BPMNLabel
+        {
+            get
+            {
+                return this._bPMNLabel;
+            }
+            set
+            {
+                this._bPMNLabel = value;
+            }
+        }
         [System.Xml.Serialization.XmlAttributeAttribute(Namespace = "http://www.omg.org/spec/BPMN/20100524/DI")]
         public System.Xml.XmlQualifiedName bpmnElement
         {

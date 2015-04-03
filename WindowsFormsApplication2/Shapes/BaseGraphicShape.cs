@@ -13,6 +13,14 @@ namespace WindowsFormsApplication2.Shapes
         tFlowElement _elment;
         DiagramElement _diagElement;
         Graphics _context;
+        bool _isSelected;
+   
+
+        public bool IsSelected
+        {
+            get { return _isSelected; }
+            set { _isSelected = value; }
+        }
 
         public tFlowElement FlowElment
         {
@@ -33,7 +41,8 @@ namespace WindowsFormsApplication2.Shapes
         
            _elment= element;
            _diagElement = shape;
-           _context = surface;           
+           _context = surface;
+   
 
         }
 
@@ -43,7 +52,18 @@ namespace WindowsFormsApplication2.Shapes
             {
                 var tmp_shape = (BPMNShape)_diagElement;
                 Rectangle rect = new Rectangle((int)tmp_shape.Bounds.x, (int)tmp_shape.Bounds.y, (int)tmp_shape.Bounds.width, (int)tmp_shape.Bounds.height);
-                graph.DrawRectangle(new Pen(Color.Black), rect);
+                graph.FillRectangle(new SolidBrush(Color.White), rect);
+
+                var pen = new Pen(Color.Black);
+
+                if(IsSelected) {
+                    pen.Width = 2;
+                    pen.Color = Color.Red;
+                }
+
+                graph.DrawRectangle(pen, rect);
+            
+                
             }
 
             if (_diagElement.GetType() == typeof(BPMNEdge))
@@ -51,7 +71,16 @@ namespace WindowsFormsApplication2.Shapes
                 var tmp_shape = (BPMNEdge)_diagElement;
                // Rectangle rect = new Rectangle((int)tmp_shape.Bounds.x, (int)tmp_shape.Bounds.y, (int)tmp_shape.Bounds.width, (int)tmp_shape.Bounds.height);
 
+
+
                 Pen pen = new Pen(Color.FromArgb(255, 0, 0, 0), 2);
+
+                if (IsSelected)
+                {
+                    pen.Width = 2;
+                    pen.Color = Color.Red;
+                }
+
                 List<PointF> points = new List<PointF>();
 
                 foreach (var wpoint in tmp_shape.waypoint)
