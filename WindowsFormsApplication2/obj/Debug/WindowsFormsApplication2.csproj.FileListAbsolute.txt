@@ -21,3 +21,4 @@ C:\Users\Aleksey\Documents\visual studio 2013\Projects\BPMS\WindowsFormsApplicat
 C:\Users\Aleksey\Documents\visual studio 2013\Projects\BPMS\WindowsFormsApplication2\obj\Debug\WindowsFormsApplication2.csproj.GenerateResource.Cache
 C:\Users\Aleksey\Documents\visual studio 2013\Projects\BPMS\WindowsFormsApplication2\obj\Debug\WindowsFormsApplication2.exe
 C:\Users\Aleksey\Documents\visual studio 2013\Projects\BPMS\WindowsFormsApplication2\obj\Debug\WindowsFormsApplication2.pdb
+C:\Users\kuznetsov\Documents\visual studio 2013\Projects\BPMS\WindowsFormsApplication2\obj\Debug\WindowsFormsApplication2.BPMNConvas.resources

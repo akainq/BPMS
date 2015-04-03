@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.IO;
@@ -13,12 +14,16 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Serialization;
+using WindowsFormsApplication2.Debug;
 using WindowsFormsApplication2.Shapes;
 
 namespace WindowsFormsApplication2
 {
     public partial class Form1 : Form
     {
+
+        MemoryStream mem_s;
+
         tDefinitions def = null;
 
         Dictionary<string, BitmapShape> shapes;
@@ -41,7 +46,11 @@ namespace WindowsFormsApplication2
             //pictureBox1.Focus();
            // pictureBox1.Invalidate();
 
-            bpmnConvas1.OnGraphicRender += myRenderer;
+         
+
+        
+
+              
            //;
         }
 
@@ -55,6 +64,8 @@ namespace WindowsFormsApplication2
 
         private void button1_Click(object sender, EventArgs e)
         {
+            Console.Error.WriteLine("Test error");
+
             var bpmn = new BPMNEngine();
             def = bpmn.ReadBPMN(TestBPMN);
             loadTree();
@@ -403,7 +414,7 @@ namespace WindowsFormsApplication2
 
         private void button2_Click(object sender, EventArgs e)
         {
-
+            if (def != null) 
             def.SaveToFile("test.bpmn");
         }
 
@@ -503,6 +514,48 @@ namespace WindowsFormsApplication2
                 }
             }
         }
+
+        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (mem_s != null)
+            mem_s.Close();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+        //    myListener.outMsgControl = richTextBox1;
+
+       //     System.Diagnostics.
+       //     TraceListener myTextListener = new
+      // TraceListener(myFile);
+            BPMNLogger logger = new BPMNLogger(richTextBox1);
+           // BPMNLogger.
+
+            Trace.Listeners.Add(logger);
+            // System.Diagnostics.Debug.
+
+            //Application.SetUnhandledExceptionMode(UnhandledExceptionMode.Automatic);
+
+            Application.ThreadException += Application_ThreadException;
+
+        }
+
+        void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)
+        {
+            Trace.TraceError("UnhandledException:" + e.Exception.Message);
+
+            if(e.Exception.InnerException != null)
+                Trace.TraceError("InnerException:" + e.Exception.InnerException);
+        
+
+        }
+
+  
 
     }
 

@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Debug\BPMNLogger.cs" />
     <Compile Include="Drawing\BPMNConvas.cs">
       <SubType>UserControl</SubType>
     </Compile>

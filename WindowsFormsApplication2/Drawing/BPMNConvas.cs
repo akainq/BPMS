@@ -27,7 +27,7 @@ namespace WindowsFormsApplication2
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
-            DrawGrid(e);
+       
         }
 
  
@@ -42,16 +42,21 @@ namespace WindowsFormsApplication2
 
             Rectangle workRect = new Rectangle();
 
-            g.FillRectangle( new SolidBrush(Color.FromArgb(141,150,179)),e.ClipRectangle);
+        //    g.FillRectangle( new SolidBrush(Color.FromArgb(141,150,179)),e.ClipRectangle);
        
+
+
 
             int offset = 20;
            // workRect.Offset(20, 20);
-            workRect.X = e.ClipRectangle.X + offset;
-            workRect.Y = e.ClipRectangle.Y + offset;
 
-            workRect.Width = e.ClipRectangle.Width - 40;
-            workRect.Height = e.ClipRectangle.Height - 40;
+            var convasRect = panel1.DisplayRectangle;
+
+            workRect.X = convasRect.X + offset;
+            workRect.Y = convasRect.Y + offset;
+
+            workRect.Width = convasRect.Width - 40;
+            workRect.Height = convasRect.Height - 40;
 
             var shadow_rect = new Rectangle(new Point(workRect.X + 5, workRect.Y + 5), workRect.Size);
 
@@ -94,6 +99,23 @@ namespace WindowsFormsApplication2
 
             if (OnGraphicRender != null) OnGraphicRender(e);
         
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+            base.OnPaint(e);
+            panel1.Width = (int)(8.27 * e.Graphics.DpiX);
+            panel1.Height = (int)(11.69 * e.Graphics.DpiY);
+
+
+
+            DrawGrid(e);
+        }
+
+        private void panel1_Layout(object sender, LayoutEventArgs e)
+        {
+            
+          
         }
     }
 
