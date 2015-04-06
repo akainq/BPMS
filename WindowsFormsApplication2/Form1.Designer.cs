@@ -37,9 +37,11 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.bpmnConvas1 = new WindowsFormsApplication2.BPMNConvas();
             this.panel1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
@@ -87,7 +89,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.richTextBox1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.richTextBox1.Font = new System.Drawing.Font("Arial Narrow", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.richTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.richTextBox1.ForeColor = System.Drawing.SystemColors.Highlight;
             this.richTextBox1.Location = new System.Drawing.Point(0, 31);
             this.richTextBox1.Name = "richTextBox1";
@@ -96,7 +98,6 @@
             this.richTextBox1.Size = new System.Drawing.Size(819, 120);
             this.richTextBox1.TabIndex = 6;
             this.richTextBox1.Text = "";
-            this.richTextBox1.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
             // 
             // label1
             // 
@@ -134,19 +135,33 @@
             this.toolStripLabel1.Size = new System.Drawing.Size(187, 22);
             this.toolStripLabel1.Text = "Вывод отладочной информации";
             // 
-            // bpmnConvas1
+            // panel2
             // 
-            this.bpmnConvas1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.bpmnConvas1.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.bpmnConvas1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.bpmnConvas1.Location = new System.Drawing.Point(265, 82);
+            this.panel2.AutoScroll = true;
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(150)))), ((int)(((byte)(180)))));
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.bpmnConvas1);
+            this.panel2.Location = new System.Drawing.Point(266, 82);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(572, 422);
+            this.panel2.TabIndex = 9;
+            // 
+            // bpmnConvas1
+            // 
+            this.bpmnConvas1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.bpmnConvas1.ConvasOrientation = WindowsFormsApplication2.PageOriantation.Landscape;
+            this.bpmnConvas1.Location = new System.Drawing.Point(3, 3);
             this.bpmnConvas1.Name = "bpmnConvas1";
-            this.bpmnConvas1.Size = new System.Drawing.Size(573, 402);
+            this.bpmnConvas1.Size = new System.Drawing.Size(1122, 793);
             this.bpmnConvas1.TabIndex = 5;
             this.bpmnConvas1.Paint += new System.Windows.Forms.PaintEventHandler(this.bpmnConvas1_Paint);
             this.bpmnConvas1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.bpmnConvas1_MouseClick);
+            this.bpmnConvas1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.bpmnConvas1_MouseDown);
+            this.bpmnConvas1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.bpmnConvas1_MouseMove);
+            this.bpmnConvas1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.bpmnConvas1_MouseUp);
             this.bpmnConvas1.Resize += new System.EventHandler(this.bpmnConvas1_Resize);
             // 
             // Form1
@@ -154,9 +169,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1148, 654);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.bpmnConvas1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.treeView1);
             this.Controls.Add(this.propertyGrid1);
@@ -169,6 +184,7 @@
             this.panel1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -186,6 +202,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
+        private System.Windows.Forms.Panel panel2;
     }
 }
 

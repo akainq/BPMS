@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Inq.BPMN;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 
 namespace WindowsFormsApplication2.Shapes
 {
@@ -52,7 +53,11 @@ namespace WindowsFormsApplication2.Shapes
             {
                 var tmp_shape = (BPMNShape)_diagElement;
                 Rectangle rect = new Rectangle((int)tmp_shape.Bounds.x, (int)tmp_shape.Bounds.y, (int)tmp_shape.Bounds.width, (int)tmp_shape.Bounds.height);
+
+
                 graph.FillRectangle(new SolidBrush(Color.White), rect);
+
+
 
                 var pen = new Pen(Color.Black);
 
@@ -73,11 +78,11 @@ namespace WindowsFormsApplication2.Shapes
 
 
 
-                Pen pen = new Pen(Color.FromArgb(255, 0, 0, 0), 2);
+                Pen pen = new Pen(Color.FromArgb(255, 0, 0, 0), 1);
 
                 if (IsSelected)
                 {
-                    pen.Width = 2;
+                    pen.Width = 1;
                     pen.Color = Color.Red;
                 }
 
@@ -87,6 +92,15 @@ namespace WindowsFormsApplication2.Shapes
                 {
                     points.Add(new PointF((float)wpoint.x, (float)wpoint.y));
                 }
+
+                AdjustableArrowCap cap1 = new AdjustableArrowCap(3, 4);
+                cap1.WidthScale = 3;
+                cap1.BaseCap = LineCap.Square;
+                cap1.Height = 4;
+                pen.CustomEndCap = cap1;
+                //pen.EndCap = System.Drawing.Drawing2D.LineCap.ArrowAnchor;
+              
+
                 graph.DrawLines(pen, points.ToArray());
 
              /*   if (tmp_shape.BPMNLabel != null)
@@ -103,5 +117,30 @@ namespace WindowsFormsApplication2.Shapes
  
 
         }
+
+
+
+
+        public void DrawRoundedRectangle(Graphics gfx, Rectangle Bounds, int CornerRadius, Pen DrawPen, Color FillColor)
+        {
+            int strokeOffset = Convert.ToInt32(Math.Ceiling(DrawPen.Width));
+            Bounds = Rectangle.Inflate(Bounds, -strokeOffset, -strokeOffset);
+
+            DrawPen.EndCap = DrawPen.StartCap = LineCap.Round;
+
+            GraphicsPath gfxPath = new GraphicsPath();
+            gfxPath.AddArc(Bounds.X, Bounds.Y, CornerRadius, CornerRadius, 180, 90);
+            gfxPath.AddArc(Bounds.X + Bounds.Width - CornerRadius, Bounds.Y, CornerRadius, CornerRadius, 270, 90);
+            gfxPath.AddArc(Bounds.X + Bounds.Width - CornerRadius, Bounds.Y + Bounds.Height - CornerRadius, CornerRadius, CornerRadius, 0, 90);
+            gfxPath.AddArc(Bounds.X, Bounds.Y + Bounds.Height - CornerRadius, CornerRadius, CornerRadius, 90, 90);
+            gfxPath.CloseAllFigures();
+
+            gfx.FillPath(new SolidBrush(FillColor), gfxPath);
+            gfx.DrawPath(DrawPen, gfxPath);
+        }
 }
+
+
+
+
 }

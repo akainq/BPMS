@@ -52,6 +52,7 @@
     <Compile Include="Drawing\BPMNConvas.Designer.cs">
       <DependentUpon>BPMNConvas.cs</DependentUpon>
     </Compile>
+    <Compile Include="Drawing\EnumDescriptionAttribute.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -60,10 +61,10 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Shapes\AnyShape.cs" />
-    <Compile Include="Shapes\BaseGraphicShape.cs" />
-    <Compile Include="Shapes\IGraphicShape.cs" />
-    <Compile Include="Shapes\TaskShape.cs" />
+    <Compile Include="DElements\AnyShape.cs" />
+    <Compile Include="DElements\BaseGraphicShape.cs" />
+    <Compile Include="DElements\IGraphicShape.cs" />
+    <Compile Include="DElements\TaskShape.cs" />
     <EmbeddedResource Include="Drawing\BPMNConvas.resx">
       <DependentUpon>BPMNConvas.cs</DependentUpon>
     </EmbeddedResource>

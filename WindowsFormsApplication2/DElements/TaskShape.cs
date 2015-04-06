@@ -10,12 +10,18 @@ namespace WindowsFormsApplication2.Shapes
 {
     public class TaskShape: BaseGraphicShape
     {
-        Rectangle _rect;
+        readonly Rectangle _rect;
 
-        public Rectangle Rect
+        public  Rectangle Rect
         {
-            get { return _rect; }
-            set { _rect = value; }
+            get {
+
+                var shape = (Shape)DiagElement;
+
+                return new Rectangle((int)shape.Bounds.x, (int)shape.Bounds.y, (int)shape.Bounds.width, (int)shape.Bounds.height);; 
+            }
+
+            set { }
         }
 
         public TaskShape(tTask taskElement, BPMNShape shape, Graphics surface)

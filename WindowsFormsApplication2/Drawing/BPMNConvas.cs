@@ -7,12 +7,30 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsFormsApplication2.Drawing;
 
 namespace WindowsFormsApplication2
 {
+    public enum PageOriantation{
+        
+       [EnumDescription("Альбомная")]
+        Landscape,
+
+       [EnumDescription("Книжная")]
+        Portrait
+    }
+
     public partial class BPMNConvas : UserControl
     {
 
+
+        private PageOriantation _convasOrientation = PageOriantation.Portrait;
+
+        public PageOriantation ConvasOrientation
+        {
+            get { return _convasOrientation; }
+            set { _convasOrientation = value; }
+        }
 
         public delegate void Renderer(PaintEventArgs e);
 
@@ -20,18 +38,65 @@ namespace WindowsFormsApplication2
 
         public BPMNConvas()
         {
-            InitializeComponent();
-            this.SetStyle(ControlStyles.UserPaint, true);
+            InitializeComponent();     
+            SetStyle(ControlStyles.UserPaint,true);
+            SetStyle(ControlStyles.DoubleBuffer, true);
+            SetStyle(ControlStyles.AllPaintingInWmPaint, true);
+            SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+            SetStyle(ControlStyles.ResizeRedraw, true);
+ 
+         
+
+
+           // toolStripComboBox1.Items.Clear();
+                      
+            var items = EnumHelper.ToList(typeof(PageOriantation));
+
+        //    toolStripComboBox1.ComboBox.DataSource = items;
+           // toolStripComboBox1.ComboBox.DisplayMember = "Key";
+          //  toolStripComboBox1.ComboBox.ValueMember = "Value";
+
+        }
+    
+
+
+        public void InvalidateConvas() {
+
+            this.Invalidate();
+        
+        }
+
+        public void InvalidateConvasRect(Rectangle rect)
+        {
+            this.Invalidate(rect);        
+
+        }
+
+        protected override void OnClick(EventArgs e)
+        {
+            base.OnClick(e);
+         
         }
 
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
-       
+
+            e.Graphics.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighSpeed;
+            e.Graphics.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SingleBitPerPixel;
+            e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighSpeed;
+            e.Graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.Low;
+
+            var v1 = (int)(8.27 * e.Graphics.DpiX);
+            var v2 = (int)(11.69 * e.Graphics.DpiY);
+
+            this.Width = _convasOrientation == PageOriantation.Portrait ? v1 : v2;
+            this.Height = _convasOrientation == PageOriantation.Portrait ? v2 : v1;
+
+
+
+            DrawGrid(e);
         }
-
- 
-
 
         protected void DrawGrid(PaintEventArgs e)
         {
@@ -42,7 +107,7 @@ namespace WindowsFormsApplication2
 
             Rectangle workRect = new Rectangle();
 
-        //    g.FillRectangle( new SolidBrush(Color.FromArgb(141,150,179)),e.ClipRectangle);
+            g.FillRectangle(new SolidBrush(Color.FromArgb(150, 150, 180)), e.ClipRectangle);
        
 
 
@@ -50,7 +115,7 @@ namespace WindowsFormsApplication2
             int offset = 20;
            // workRect.Offset(20, 20);
 
-            var convasRect = panel1.DisplayRectangle;
+            var convasRect = this.DisplayRectangle;
 
             workRect.X = convasRect.X + offset;
             workRect.Y = convasRect.Y + offset;
@@ -101,22 +166,7 @@ namespace WindowsFormsApplication2
         
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-            base.OnPaint(e);
-            panel1.Width = (int)(8.27 * e.Graphics.DpiX);
-            panel1.Height = (int)(11.69 * e.Graphics.DpiY);
 
-
-
-            DrawGrid(e);
-        }
-
-        private void panel1_Layout(object sender, LayoutEventArgs e)
-        {
-            
-          
-        }
     }
 
     
